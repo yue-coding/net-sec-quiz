@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --card: 18 24 39;
+}
+
+html, body, #root { height: 100%; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* Japandi Futurist canvas: ultra-subtle animated gradient */
+body {
+  /* Subtle, sky-leaning mesh gradient */
+  background:
+    radial-gradient(1100px 700px at 12% 18%, rgba(186,230,253,0.14), transparent), /* sky-200 */
+    radial-gradient(900px 600px at 80% 6%, rgba(125,211,252,0.10), transparent),   /* sky-300 */
+    radial-gradient(800px 800px at 48% 100%, rgba(167,243,208,0.08), transparent), /* mint hint */
+    linear-gradient(180deg, #0f172a, #0f1a28 45%, #0f172a);
+  background-size: 120% 120%;
+  animation: gradientShift 30s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Glass card utility */
+.glass {
+  /* Lighter, slightly sky-tinted glass */
+  background: linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0.72),
+    rgba(186,230,253,0.28)
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.35);
+}
+

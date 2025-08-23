@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Questions",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": ["id", "questionText", "options", "correctAnswer", "answerType"],
+    "properties": {
+      "id": { "type": ["string", "number"] },
+      "questionText": { "type": "string", "minLength": 5 },
+      "options": {
+        "type": "array",
+        "minItems": 2,
+        "items": { "type": "string" },
+        "uniqueItems": true
+      },
+      "correctAnswer": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+  "answerType": { "type": "string", "enum": ["radio", "checkbox"] },
+  "image": { "type": "string" },
+  "imageAlt": { "type": "string" },
+    "meta": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sourceFile": { "type": "string" },
+          "pageNumber": { "type": "number" },
+      "topic": { "type": "string" },
+      "week": { "type": "number", "minimum": 1 }
+        }
+      }
+    },
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": { "properties": { "answerType": { "const": "radio" } } },
+        "then": { "properties": { "correctAnswer": { "maxItems": 1 } } }
+      }
+    ]
+  }
+}

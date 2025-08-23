@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/public/questions.json", "public/questions.json"],
+      "url": "./public/questions.schema.json"
+    }
+  ]
+}

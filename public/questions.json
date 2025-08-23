@@ -1,0 +1,502 @@
+[
+  {
+    "id": 1,
+    "questionText": "Which DoS attack classification involves all compromised computers sharing a common pseudo-random permutation of the IP address space?",
+    "options": [
+      "Random Scanning",
+      "Permutation Scanning",
+      "Signpost Scanning",
+      "Hitlist Scanning",
+      "Subnet Spoofing"
+    ],
+    "correctAnswer": ["Permutation Scanning"],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 1,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 2,
+    "questionText": "According to the lecture, what are the two primary types of amplification attacks?",
+    "options": [
+      "DoS bug and DoS flood",
+      "TCP flood and UDP bug",
+      "Link layer flood and Application bug",
+      "SYN flood and DNS bug",
+      "Infrastructure attack and Server attack"
+    ],
+    "correctAnswer": ["DoS bug and DoS flood"],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 2,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 3,
+    "questionText": "How does a TCP SYN flood attack exploit the TCP handshake process to cause a Denial of Service?",
+    "options": [
+      "It sends many SYN packets with spoofed source IPs, causing the server to exhaust its memory waiting for ACK packets that never arrive.",
+      "It sends many oversized ACK packets to established connections, overwhelming the server's bandwidth.",
+      "It sends FIN packets with incorrect sequence numbers to prematurely close legitimate connections.",
+      "It exploits a bug in the TCP checksum calculation to crash the network stack of the server.",
+      "It sends SYN packets to ports that are not open, causing the server to generate a high volume of ICMP error messages."
+    ],
+    "correctAnswer": ["It sends many SYN packets with spoofed source IPs, causing the server to exhaust its memory waiting for ACK packets that never arrive."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 6,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 4,
+    "questionText": "What is proposed as the 'Correct Solution' to defend against low-rate SYN flood attacks?",
+    "options": [
+      "Using Syncookies to remove state from the server",
+      "Increasing the backlog queue size to hold more pending connections",
+      "Decreasing the timeout for half-open connections",
+      "Blocking all incoming SYN packets with a firewall",
+      "Deploying a more powerful server with additional RAM"
+    ],
+    "correctAnswer": ["Using Syncookies to remove state from the server"],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 7,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 5,
+    "questionText": "What is a key consequence for an attacker launching a TCP connection flood attack that completes the full TCP handshake?",
+    "options": [
+      "The attacker can no longer use random source IPs, which reveals the location of the bot zombies.",
+      "The attack becomes significantly less effective at consuming server resources.",
+      "The attack requires more bandwidth than a standard SYN flood.",
+      "A SYN flood protection proxy can no longer detect the attack at all.",
+      "The attack is easier for beginner attackers to launch."
+    ],
+    "correctAnswer": ["The attacker can no longer use random source IPs, which reveals the location of the bot zombies."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 9,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 6,
+    "questionText": "What is the primary implementation problem with Ingress Filtering as a DoS mitigation technique?",
+    "options": [
+      "It requires global adoption by all ISPs to be effective, but there is little incentive for individual deployment.",
+      "It is too computationally expensive for modern routers to handle at line speed.",
+      "It cannot stop packets where the source IP has been spoofed.",
+      "It only works for UDP traffic and is ineffective against TCP-based attacks.",
+      "It requires fundamental changes to the IP packet format, which is not feasible."
+    ],
+    "correctAnswer": ["It requires global adoption by all ISPs to be effective, but there is little incentive for individual deployment."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 16,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 7,
+    "questionText": "In the Edge Sampling traceback mechanism, what information is probabilistically written into a packet by a router to help reconstruct the attack path?",
+    "options": [
+      "An edge (start and end IP addresses) and a distance (number of hops since the edge was stored).",
+      "The entire path from the source to the current router.",
+      "A timestamp and the router's unique ID.",
+      "A digital signature from the router to prove its identity.",
+      "The router's MAC address and the ingress port number."
+    ],
+    "correctAnswer": ["An edge (start and end IP addresses) and a distance (number of hops since the edge was stored)."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 18,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 8,
+    "questionText": "What is the fundamental security problem regarding authentication in the Internet Protocol (IP)?",
+    "options": [
+      "There is no built-in mechanism for source IP authentication, allowing for easy spoofing.",
+      "The destination IP address is not authenticated, allowing for man-in-the-middle attacks.",
+      "The Time-to-Live (TTL) field can be forged, creating infinite routing loops.",
+      "IP headers are not encrypted by default, allowing eavesdropping.",
+      "The IP header checksum is weak and easily bypassed by attackers."
+    ],
+    "correctAnswer": ["There is no built-in mechanism for source IP authentication, allowing for easy spoofing."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 4,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 9,
+    "questionText": "Why is it critical for the Transmission Control Protocol (TCP) to use random initial sequence numbers?",
+    "options": [
+      "Predictable sequence numbers would allow an attacker to create a TCP session on behalf of a forged source IP.",
+      "Random sequence numbers prevent packet loss during transmission over unreliable networks.",
+      "It is the primary mechanism that ensures the in-order delivery of packets.",
+      "Randomness is essential for the TCP congestion control algorithm to function correctly.",
+      "It is required for IP fragmentation and reassembly to work with TCP segments."
+    ],
+    "correctAnswer": ["Predictable sequence numbers would allow an attacker to create a TCP session on behalf of a forged source IP."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 7,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 10,
+    "questionText": "How can the Address Resolution Protocol (ARP) be exploited in a local network attack?",
+    "options": [
+      "A malicious node can send a false ARP reply, causing a gateway to send it traffic intended for another node.",
+      "By sending oversized ARP packets to crash the gateway's network interface.",
+      "By flooding the network with ARP requests to cause a denial of service.",
+      "By encrypting ARP replies so that only the attacker can communicate with the gateway.",
+      "By modifying the gateway's static ARP table through a buffer overflow."
+    ],
+    "correctAnswer": ["A malicious node can send a false ARP reply, causing a gateway to send it traffic intended for another node."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 10,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 11,
+    "questionText": "What is the primary security issue with the Border Gateway Protocol (BGP) that allows for attacks like route hijacking?",
+    "options": [
+      "Route updates are unauthenticated, allowing any AS to inject false advertisements for arbitrary routes.",
+      "BGP messages are sent in plaintext, allowing attackers to easily sniff sensitive routing information.",
+      "BGP is vulnerable to buffer overflow attacks that can crash routers.",
+      "BGP routers often have weak default passwords that are easily guessed.",
+      "BGP does not have native support for IPv6, creating security gaps in modern networks."
+    ],
+    "correctAnswer": ["Route updates are unauthenticated, allowing any AS to inject false advertisements for arbitrary routes."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 10,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 12,
+    "questionText": "In Secure BGP (S-BGP), what is the purpose of an 'Address Attestation'?",
+    "options": [
+      "It provides digitally-signed authorization for an Autonomous System (AS) to advertise specified address blocks.",
+      "It encrypts the route update messages between peering routers.",
+      "It validates that a router's physical hardware has not been tampered with.",
+      "It signs every hop in a path advertisement to ensure path integrity.",
+      "It provides a secure timestamp for each route update to prevent replay attacks."
+    ],
+    "correctAnswer": ["It provides digitally-signed authorization for an Autonomous System (AS) to advertise specified address blocks."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 12,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 13,
+    "questionText": "In the standard penetration testing methodology, what step immediately follows 'Gaining Access'?",
+    "options": [
+      "Escalating Privilege",
+      "Scanning",
+      "Covering Tracks",
+      "Pilfering",
+      "Footprinting"
+    ],
+    "correctAnswer": ["Escalating Privilege"],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 2,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 14,
+    "questionText": "Which of the following tools are primarily used for the 'Footprinting' (reconnaissance and information gathering) phase of a penetration test?",
+    "options": [
+      "whois, nslookup",
+      "Nmap, fping",
+      "Johntheripper, getadmin",
+      "zap, rootkits",
+      "Tcpdump, Lophtcrack"
+    ],
+    "correctAnswer": ["whois, nslookup"],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 2,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 15,
+    "questionText": "What is a key difference between the 'Scanning' and 'Enumeration' phases in penetration testing?",
+    "options": [
+      "Enumeration is more intrusive and targeted, aiming to identify specific user accounts or resource shares.",
+      "Scanning is more intrusive than enumeration because it sends more packets.",
+      "Scanning is a passive process, while enumeration is an active one.",
+      "Enumeration always occurs before scanning in the standard methodology.",
+      "Scanning identifies user accounts, while enumeration identifies open ports and services."
+    ],
+    "correctAnswer": ["Enumeration is more intrusive and targeted, aiming to identify specific user accounts or resource shares."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 3,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 16,
+    "questionText": "Why is social engineering an effective attack vector? Select all that apply.",
+    "options": [
+      "It manipulates legitimate users into undermining their own security system.",
+      "It is very cheap for the attacker and does not require specialized equipment.",
+      "It abuses trusted relationships between employees.",
+      "It requires highly specialized and expensive technical skills to execute."
+    ],
+    "correctAnswer": [
+      "It manipulates legitimate users into undermining their own security system.",
+      "It is very cheap for the attacker and does not require specialized equipment.",
+      "It abuses trusted relationships between employees."
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 7,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 17,
+    "questionText": "An attacker calls an employee, pretends to be from the IT department for a major software vendor, and asks for user credentials for 'troubleshooting purposes.' What type of social engineering attack is this?",
+    "options": [
+      "Impersonation: Tech Support",
+      "Impersonation: Third-Party Authorization",
+      "Impersonation: Help Desk",
+      "Impersonation: Repairman",
+      "Computer Attack: Popup Window"
+    ],
+    "correctAnswer": ["Impersonation: Tech Support"],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 8,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 18,
+    "questionText": "Which of the following events should trigger a penetration test? Select all that apply.",
+    "options": [
+      "Infrastructure is added or modified",
+      "Applications are added or modified",
+      "End user policies are changed",
+      "Security patches are installed",
+      "An employee goes on vacation"
+    ],
+    "correctAnswer": [
+      "Infrastructure is added or modified",
+      "Applications are added or modified",
+      "End user policies are changed",
+      "Security patches are installed"
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 6,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 19,
+    "questionText": "In the cybercrime underground ecosystem, what is the primary role of a 'Botnet master'?",
+    "options": [
+      "They develop software to control vast numbers of zombie machines and rent them out to other actors.",
+      "They reverse-engineer software to find and sell new zero-day exploits.",
+      "They set up and manage phishing sites to steal user credentials.",
+      "They specialize in laundering money from stolen credit cards and bank accounts.",
+      "They write and distribute spam emails on behalf of others."
+    ],
+    "correctAnswer": ["They develop software to control vast numbers of zombie machines and rent them out to other actors."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L03 - Cybercrime.pdf",
+      "pageNumber": 1,
+      "topic": "Cybercrime"
+    }
+  },
+  {
+    "id": 20,
+    "questionText": "Which actor in the cybercrime underground is responsible for creating and selling exploit packs and kits?",
+    "options": [
+      "Exploit developers",
+      "Botnet masters",
+      "Spammers",
+      "Phishers",
+      "Carders"
+    ],
+    "correctAnswer": ["Exploit developers"],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L03 - Cybercrime.pdf",
+      "pageNumber": 1,
+      "topic": "Cybercrime"
+    }
+  },
+  {
+    "id": 21,
+    "questionText": "What is the 'Pay-per-install' (PPI) model in the context of cybercrime?",
+    "options": [
+      "A malware distribution model where criminals are paid for each successful installation of malware on a victim's machine.",
+      "A business model for renting botnets for a fixed monthly fee.",
+      "A payment system used to cash out stolen credit cards.",
+      "A subscription service for purchasing the latest exploit kits.",
+      "A model for paying for 'bulletproof' web hosting services."
+    ],
+    "correctAnswer": ["A malware distribution model where criminals are paid for each successful installation of malware on a victim's machine."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L03 - Cybercrime.pdf",
+      "pageNumber": 5,
+      "topic": "Cybercrime"
+    }
+  },
+  {
+    "id": 22,
+    "questionText": "Which modern technique provides a robust and hard-to-detect Command and Control (C&C) infrastructure for botnets?",
+    "options": [
+      "Random Domain Generation, where bots generate many possible domains daily but only a few are registered by the botmaster.",
+      "A single, centralized IRC server with a hardcoded IP address.",
+      "A peer-to-peer (P2P) network where bots connect to a static list of peers.",
+      "Fast Flux DNS using a single, fixed domain name that can be easily blacklisted.",
+      "Using a public social media account, like Twitter, to post commands."
+    ],
+    "correctAnswer": ["Random Domain Generation, where bots generate many possible domains daily but only a few are registered by the botmaster."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L03 - Cybercrime.pdf",
+      "pageNumber": 10,
+      "topic": "Cybercrime"
+    }
+  },
+  {
+    "id": 23,
+    "questionText": "Based on the Storm botnet case study, what was the approximate user conversion rate for the 'Pharmacy' spam campaign (i.e., the ratio of sales to spams that reached an inbox)?",
+    "options": [
+      "1 in 1,737",
+      "1 in 25",
+      "1 in 37",
+      "1 in 7,142",
+      "1 in 100"
+    ],
+    "correctAnswer": ["1 in 1,737"],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L03 - Cybercrime.pdf",
+      "pageNumber": 13,
+      "topic": "Cybercrime"
+    }
+  },
+  {
+    "id": 24,
+    "questionText": "Why is setting up a successful online scamming operation, such as a fake pharmacy, considered difficult?",
+    "options": [
+      "It requires 'bulletproof' services for domain registration, DNS, and web hosting, which are expensive and hard to find.",
+      "The software required to build an e-commerce website is too complex for most criminals.",
+      "The logistics of shipping counterfeit goods internationally are nearly impossible to manage.",
+      "It is too difficult to generate a sufficient volume of spam traffic to attract customers.",
+      "Legitimate payment processors are eager to work with them, making it easy to get caught."
+    ],
+    "correctAnswer": ["It requires 'bulletproof' services for domain registration, DNS, and web hosting, which are expensive and hard to find."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L03 - Cybercrime.pdf",
+      "pageNumber": 15,
+      "topic": "Cybercrime"
+    }
+  },
+  {
+    "id": 25,
+    "questionText": "Why do scam sites, such as those in pharmaceutical scams, almost always ship a product to customers?",
+    "options": [
+      "To avoid customer complaints, which can lead to payment processors shutting down their accounts and banks seizing their funds.",
+      "Because they are trying to build a legitimate brand reputation.",
+      "To comply with international shipping regulations.",
+      "Because the cost of the counterfeit product is negligible.",
+      "To use the shipping data to launch further attacks on the customer."
+    ],
+    "correctAnswer": ["To avoid customer complaints, which can lead to payment processors shutting down their accounts and banks seizing their funds."],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L03 - Cybercrime.pdf",
+      "pageNumber": 16,
+      "topic": "Cybercrime"
+    }
+  },
+  {
+    "id": 26,
+    "questionText": "Match the DoS attack classifications with their correct descriptions. Select all correct pairs.",
+    "options": [
+      "Random Scanning — Each compromised computer probes random addresses.",
+      "Permutation Scanning — All compromised computers share a common pseudo-random permutation of the IP address space.",
+      "Signpost Scanning — Uses the communication patterns of the compromised computer to find new targets.",
+      "Hitlist Scanning — A portion of a list of targets is supplied to a compromised computer.",
+      "Hitlist Scanning — Each compromised computer probes random addresses.",
+      "Random Scanning — A portion of a list of targets is supplied to a compromised computer."
+    ],
+    "correctAnswer": [
+      "Random Scanning — Each compromised computer probes random addresses.",
+      "Permutation Scanning — All compromised computers share a common pseudo-random permutation of the IP address space.",
+      "Signpost Scanning — Uses the communication patterns of the compromised computer to find new targets.",
+      "Hitlist Scanning — A portion of a list of targets is supplied to a compromised computer."
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 1,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 27,
+    "questionText": "Select all the true statements about SYN Cookies.",
+    "options": [
+      "SYN cookies require modified versions of TCP",
+      "SYN cookies lead to overall slower performance",
+      "The server must reject all TCP options because the server discards the SYN queue entry"
+    ],
+    "correctAnswer": [
+      "The server must reject all TCP options because the server discards the SYN queue entry"
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L01_Week1_Summary.pdf",
+      "pageNumber": 1,
+      "topic": "TCP/IP Security"
+    }
+  }
+]
