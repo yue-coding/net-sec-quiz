@@ -7,21 +7,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#f5f9ff',
-          100: '#e8f1ff',
-          200: '#cfe2ff',
-          300: '#a6c8ff',
-          400: '#77a5ff',
-          500: '#4a7fff',
-          600: '#2d5cf2',
-          700: '#2346c4',
-          800: '#1d399b',
-          900: '#1a347d',
+        gt: {
+          navy: '#0A3255',
+          navyDark: '#051B30',
+          navyMuted: '#123F6B',
+          gold: '#AE9D64',
+          goldLight: '#C7B67F',
+          cream: '#FDF9EF',
+          white: '#FFFFFF',
         },
       },
       boxShadow: {
-        glow: '0 10px 30px -10px rgba(74, 127, 255, 0.5)'
+        glow: '0 18px 38px -12px rgba(10, 50, 85, 0.55)',
+        gold: '0 12px 30px -14px rgba(174, 157, 100, 0.7)'
       }
     },
   },

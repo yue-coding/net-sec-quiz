@@ -46,24 +46,24 @@ export default function Quiz({ questions, answers, onAnswer }: Props) {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-  className="rounded-2xl border border-white/60 bg-white/70 backdrop-blur-lg p-6 sm:p-8 shadow-xl shadow-slate-900/10 text-slate-900"
+  className="rounded-2xl border border-white/70 bg-white/95 backdrop-blur-xl p-6 sm:p-8 shadow-xl shadow-[0_18px_38px_rgba(5,27,48,0.18)] text-gt-navy"
     >
       <div className="flex items-start justify-between gap-4 mb-4">
         <div>
-          <p className="text-sm font-medium text-slate-900">Question {current + 1} of {questions.length}</p>
+          <p className="text-sm font-semibold text-gt-navy">Question {current + 1} of {questions.length}</p>
         </div>
-        <div className="text-[13px] text-slate-900 bg-white/60 backdrop-blur-sm px-2 py-1 rounded-md border border-white/60 shadow-sm">
-          {q.meta?.sourceFile && <span className="mr-2 align-middle">{q.meta.sourceFile}</span>}
+        <div className="text-[13px] text-white bg-gt-navy px-2 py-1 rounded-md border border-gt-navy/60 shadow-sm">
+          {q.meta?.sourceFile && <span className="mr-2 align-middle font-semibold text-gt-gold">{q.meta.sourceFile}</span>}
           {q.meta?.pageNumber != null && <span className="opacity-90 align-middle">p.{q.meta.pageNumber}</span>}
         </div>
       </div>
 
-  <h2 className="text-[22px] sm:text-2xl font-semibold text-slate-900 leading-snug mb-3">
+  <h2 className="text-[22px] sm:text-2xl font-semibold text-gt-navy leading-snug mb-3">
         {q.questionText}
       </h2>
 
       {q.image && (
-        <div className="mb-5 overflow-hidden rounded-xl border border-white/60 bg-white/70">
+  <div className="mb-5 overflow-hidden rounded-xl border border-gt-gold/30 bg-white/80">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={q.image} alt={q.imageAlt || 'Question image'} className="w-full h-auto block" />
         </div>
@@ -79,17 +79,17 @@ export default function Quiz({ questions, answers, onAnswer }: Props) {
                 onClick={() => handleSelect(i)}
                 className={`w-full text-left px-4 py-3 rounded-xl border transition-all will-change-transform hover:-translate-y-0.5 focus:outline-none ${
                   active
-                    ? 'border-sky-300/80 bg-white/90 ring-2 ring-sky-300/40'
-                    : 'border-white/50 bg-white/80 hover:bg-white/90 focus:ring-2 focus:ring-sky-300/40'
+                    ? 'border-gt-gold bg-gt-gold/10 ring-2 ring-gt-gold/60 shadow-md'
+                    : 'border-gt-navy/20 bg-white hover:bg-gt-cream focus:ring-2 focus:ring-gt-gold/40'
                 }`}
               >
                 <div className="flex items-start gap-3">
                   <span className={`h-6 w-6 mt-0.5 grid place-items-center rounded-md text-xs font-semibold ${
-                    active ? 'bg-sky-400 text-white' : 'bg-white text-slate-700 border border-slate-300'
+                    active ? 'bg-gt-gold text-gt-navy' : 'bg-white text-gt-navy border border-gt-navy/30'
                   }`}>
                     {i + 1}
                   </span>
-                  <span className="text-slate-900">{label}</span>
+                  <span className="text-gt-navy">{label}</span>
                 </div>
               </button>
             </li>
@@ -101,7 +101,7 @@ export default function Quiz({ questions, answers, onAnswer }: Props) {
         <button
           disabled={selected.length === 0}
       onClick={() => selected.length > 0 && onAnswer(selected)}
-      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-300 bg-white/70 hover:bg-white/80 disabled:opacity-50 transition-all text-slate-900"
+      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gt-gold/70 bg-gt-gold text-gt-navy font-semibold hover:bg-gt-gold/90 disabled:opacity-40 transition-all"
         >
           Next
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
