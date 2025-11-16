@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/types.ts","./src/components/progress.tsx","./src/components/quiz.tsx","./src/components/result.tsx","./vite.config.ts"],"version":"5.9.2"}
+{"root":["./src/App.tsx","./src/main.tsx","./src/types.ts","./src/components/Progress.tsx","./src/components/Quiz.tsx","./src/components/Result.tsx","./vite.config.ts"],"version":"5.9.2"}

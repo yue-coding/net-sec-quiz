@@ -11,8 +11,8 @@ export default function App() {
   const [state, setState] = useState<LoadState>('loading')
   const [seed, setSeed] = useState<number>(() => Date.now())
   const [answers, setAnswers] = useState<UserSelection[]>([])
-  // 'all' means no filtering by week
-  const [selectedWeek, setSelectedWeek] = useState<number | 'all'>('all')
+  // 'all' means no filtering by topic
+  const [selectedTopic, setSelectedTopic] = useState<string | 'all'>('all')
   const [count, setCount] = useState<number>(10)
 
   useEffect(() => {
@@ -46,26 +46,26 @@ export default function App() {
     return arr
   }, [questions, seed])
 
-  const { availableWeeks, hasWeekMeta } = useMemo(() => {
-    const set = new Set<number>()
+  const { availableTopics, hasTopicMeta } = useMemo(() => {
+    const set = new Set<string>()
     for (const q of questions) {
-      if (typeof q.meta?.week === 'number' && Number.isFinite(q.meta.week)) set.add(q.meta.week)
+      if (typeof q.meta?.topic === 'string' && q.meta.topic.trim().length > 0) set.add(q.meta.topic.trim())
     }
-    const weeks = Array.from(set).sort((a, b) => a - b)
+    const topics = Array.from(set).sort((a, b) => a.localeCompare(b))
     return {
-      availableWeeks: weeks.length > 0 ? weeks : [1],
-      hasWeekMeta: weeks.length > 0,
+      availableTopics: topics,
+      hasTopicMeta: topics.length > 0,
     }
   }, [questions])
 
   const session = useMemo(() => {
-    const pool = selectedWeek === 'all'
+    const pool = selectedTopic === 'all'
       ? shuffled
-      : (hasWeekMeta ? shuffled.filter(q => q.meta?.week === selectedWeek) : shuffled)
+      : (hasTopicMeta ? shuffled.filter(q => q.meta?.topic === selectedTopic) : shuffled)
     if (pool.length === 0) return []
     const n = Math.max(1, Math.min(count, pool.length))
     return pool.slice(0, n)
-  }, [shuffled, count, selectedWeek, hasWeekMeta])
+  }, [shuffled, count, selectedTopic, hasTopicMeta])
 
   return (
   <div className="min-h-full">
@@ -76,23 +76,23 @@ export default function App() {
       <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-100">Net Sec Quiz</h1>
           </div>
           <div className="flex items-center gap-3">
-            {/* Week filter: mobile-first dropdown */}
-            <label className="text-sm text-slate-200" htmlFor="week-select">Week</label>
+            {/* Topic filter: mobile-first dropdown */}
+            <label className="text-sm text-slate-200" htmlFor="topic-select">Topic</label>
             <select
-              id="week-select"
-              aria-label="Select week"
-              value={selectedWeek === 'all' ? 'all' : String(selectedWeek)}
+              id="topic-select"
+              aria-label="Select topic"
+              value={selectedTopic === 'all' ? 'all' : selectedTopic}
               onChange={(e) => {
-                const v = e.target.value === 'all' ? 'all' : Number(e.target.value)
-                setSelectedWeek(v)
+                const v = e.target.value === 'all' ? 'all' : e.target.value
+                setSelectedTopic(v)
                 setAnswers([])
                 setSeed(Date.now())
               }}
               className="text-sm px-2 py-1.5 rounded-xl border border-white/60 bg-white/70 text-slate-900"
             >
               <option value="all">All</option>
-              {availableWeeks.map(w => (
-                <option key={w} value={w}>{`Week ${w}`}</option>
+              {availableTopics.map(topic => (
+                <option key={topic} value={topic}>{topic}</option>
               ))}
             </select>
             <label className="hidden sm:block text-sm text-slate-200">Questions</label>

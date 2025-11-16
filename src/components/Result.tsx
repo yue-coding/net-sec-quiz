@@ -30,7 +30,7 @@ export default function Result({ questions, answers, onRestart }: Props) {
       </div>
 
       {total === 0 ? (
-        <p className="mt-6 text-slate-800">No questions match your filters. Try selecting a different week or increase the count.</p>
+        <p className="mt-6 text-slate-800">No questions match your filters. Try selecting a different topic or increase the count.</p>
       ) : (
       <ul className="mt-6 space-y-3">
         {questions.map((q, i) => {

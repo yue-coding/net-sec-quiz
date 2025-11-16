@@ -1,25 +1,7 @@
 [
   {
     "id": 1,
-    "questionText": "Which DoS attack classification involves all compromised computers sharing a common pseudo-random permutation of the IP address space?",
-    "options": [
-      "Random Scanning",
-      "Permutation Scanning",
-      "Signpost Scanning",
-      "Hitlist Scanning",
-      "Subnet Spoofing"
-    ],
-    "correctAnswer": ["Permutation Scanning"],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L02_DDoS_Attack.pdf",
-      "pageNumber": 1,
-      "topic": "DDoS Attacks"
-    }
-  },
-  {
-    "id": 2,
-    "questionText": "According to the lecture, what are the two primary types of amplification attacks?",
+    "questionText": "According to the lecture, what are the two primary types of amplification attacks used in Network DoS?",
     "options": [
       "DoS bug and DoS flood",
       "TCP flood and UDP bug",
@@ -27,7 +9,9 @@
       "SYN flood and DNS bug",
       "Infrastructure attack and Server attack"
     ],
-    "correctAnswer": ["DoS bug and DoS flood"],
+    "correctAnswer": [
+      "DoS bug and DoS flood"
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L02_DDoS_Attack.pdf",
@@ -36,16 +20,39 @@
     }
   },
   {
-    "id": 3,
-    "questionText": "How does a TCP SYN flood attack exploit the TCP handshake process to cause a Denial of Service?",
+    "id": 2,
+    "questionText": "Why is the UDP-based NTP protocol particularly vulnerable to amplification attacks? (Select all that apply)",
     "options": [
-      "It sends many SYN packets with spoofed source IPs, causing the server to exhaust its memory waiting for ACK packets that never arrive.",
-      "It sends many oversized ACK packets to established connections, overwhelming the server's bandwidth.",
+      "A small command can generate a large response.",
+      "It is vulnerable to source IP spoofing.",
+      "It is difficult to ensure computers communicate only with legitimate NTP servers.",
+      "It is a session-based protocol that requires a 3-way handshake."
+    ],
+    "correctAnswer": [
+      "A small command can generate a large response.",
+      "It is vulnerable to source IP spoofing.",
+      "It is difficult to ensure computers communicate only with legitimate NTP servers."
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L02_DDoS_Attack.pdf",
+      "pageNumber": 4,
+      "topic": "DDoS Attacks"
+    }
+  },
+  {
+    "id": 3,
+    "questionText": "How does a TCP SYN flood attack cause a Denial of Service?",
+    "options": [
+      "It sends many SYN packets with spoofed source IPs, causing the server to fill its backlog queue and exhaust memory waiting for ACKs that never arrive.",
+      "It sends oversized ACK packets to established connections, overwhelming the server's bandwidth.",
       "It sends FIN packets with incorrect sequence numbers to prematurely close legitimate connections.",
-      "It exploits a bug in the TCP checksum calculation to crash the network stack of the server.",
+      "It exploits a design flaw in the TCP checksum calculation to crash the server's network stack.",
       "It sends SYN packets to ports that are not open, causing the server to generate a high volume of ICMP error messages."
     ],
-    "correctAnswer": ["It sends many SYN packets with spoofed source IPs, causing the server to exhaust its memory waiting for ACK packets that never arrive."],
+    "correctAnswer": [
+      "It sends many SYN packets with spoofed source IPs, causing the server to fill its backlog queue and exhaust memory waiting for ACKs that never arrive."
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L02_DDoS_Attack.pdf",
@@ -55,15 +62,17 @@
   },
   {
     "id": 4,
-    "questionText": "What is proposed as the 'Correct Solution' to defend against low-rate SYN flood attacks?",
+    "questionText": "What is the 'Correct Solution' proposed in the lecture to defend against low-rate SYN flood attacks?",
     "options": [
       "Using Syncookies to remove state from the server",
       "Increasing the backlog queue size to hold more pending connections",
-      "Decreasing the timeout for half-open connections",
-      "Blocking all incoming SYN packets with a firewall",
+      "Decreasing the connection timeout value",
+      "Using a firewall to block all incoming SYN packets",
       "Deploying a more powerful server with additional RAM"
     ],
-    "correctAnswer": ["Using Syncookies to remove state from the server"],
+    "correctAnswer": [
+      "Using Syncookies to remove state from the server"
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L02_DDoS_Attack.pdf",
@@ -73,15 +82,17 @@
   },
   {
     "id": 5,
-    "questionText": "What is a key consequence for an attacker launching a TCP connection flood attack that completes the full TCP handshake?",
+    "questionText": "What is a key drawback for an attacker launching a 'TCP connection flood' (which completes the full handshake) compared to a simple SYN flood?",
     "options": [
       "The attacker can no longer use random source IPs, which reveals the location of the bot zombies.",
-      "The attack becomes significantly less effective at consuming server resources.",
+      "The attack is significantly less effective at consuming server resources.",
       "The attack requires more bandwidth than a standard SYN flood.",
       "A SYN flood protection proxy can no longer detect the attack at all.",
       "The attack is easier for beginner attackers to launch."
     ],
-    "correctAnswer": ["The attacker can no longer use random source IPs, which reveals the location of the bot zombies."],
+    "correctAnswer": [
+      "The attacker can no longer use random source IPs, which reveals the location of the bot zombies."
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L02_DDoS_Attack.pdf",
@@ -91,267 +102,7 @@
   },
   {
     "id": 6,
-    "questionText": "What is the primary implementation problem with Ingress Filtering as a DoS mitigation technique?",
-    "options": [
-      "It requires global adoption by all ISPs to be effective, but there is little incentive for individual deployment.",
-      "It is too computationally expensive for modern routers to handle at line speed.",
-      "It cannot stop packets where the source IP has been spoofed.",
-      "It only works for UDP traffic and is ineffective against TCP-based attacks.",
-      "It requires fundamental changes to the IP packet format, which is not feasible."
-    ],
-    "correctAnswer": ["It requires global adoption by all ISPs to be effective, but there is little incentive for individual deployment."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L02_DDoS_Attack.pdf",
-      "pageNumber": 16,
-      "topic": "DDoS Attacks"
-    }
-  },
-  {
-    "id": 7,
-    "questionText": "In the Edge Sampling traceback mechanism, what information is probabilistically written into a packet by a router to help reconstruct the attack path?",
-    "options": [
-      "An edge (start and end IP addresses) and a distance (number of hops since the edge was stored).",
-      "The entire path from the source to the current router.",
-      "A timestamp and the router's unique ID.",
-      "A digital signature from the router to prove its identity.",
-      "The router's MAC address and the ingress port number."
-    ],
-    "correctAnswer": ["An edge (start and end IP addresses) and a distance (number of hops since the edge was stored)."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L02_DDoS_Attack.pdf",
-      "pageNumber": 18,
-      "topic": "DDoS Attacks"
-    }
-  },
-  {
-    "id": 8,
-    "questionText": "What is the fundamental security problem regarding authentication in the Internet Protocol (IP)?",
-    "options": [
-      "There is no built-in mechanism for source IP authentication, allowing for easy spoofing.",
-      "The destination IP address is not authenticated, allowing for man-in-the-middle attacks.",
-      "The Time-to-Live (TTL) field can be forged, creating infinite routing loops.",
-      "IP headers are not encrypted by default, allowing eavesdropping.",
-      "The IP header checksum is weak and easily bypassed by attackers."
-    ],
-    "correctAnswer": ["There is no built-in mechanism for source IP authentication, allowing for easy spoofing."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L05-Security of Internet Protocols.pdf",
-      "pageNumber": 4,
-      "topic": "TCP/IP Security"
-    }
-  },
-  {
-    "id": 9,
-    "questionText": "Why is it critical for the Transmission Control Protocol (TCP) to use random initial sequence numbers?",
-    "options": [
-      "Predictable sequence numbers would allow an attacker to create a TCP session on behalf of a forged source IP.",
-      "Random sequence numbers prevent packet loss during transmission over unreliable networks.",
-      "It is the primary mechanism that ensures the in-order delivery of packets.",
-      "Randomness is essential for the TCP congestion control algorithm to function correctly.",
-      "It is required for IP fragmentation and reassembly to work with TCP segments."
-    ],
-    "correctAnswer": ["Predictable sequence numbers would allow an attacker to create a TCP session on behalf of a forged source IP."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L05-Security of Internet Protocols.pdf",
-      "pageNumber": 7,
-      "topic": "TCP/IP Security"
-    }
-  },
-  {
-    "id": 10,
-    "questionText": "How can the Address Resolution Protocol (ARP) be exploited in a local network attack?",
-    "options": [
-      "A malicious node can send a false ARP reply, causing a gateway to send it traffic intended for another node.",
-      "By sending oversized ARP packets to crash the gateway's network interface.",
-      "By flooding the network with ARP requests to cause a denial of service.",
-      "By encrypting ARP replies so that only the attacker can communicate with the gateway.",
-      "By modifying the gateway's static ARP table through a buffer overflow."
-    ],
-    "correctAnswer": ["A malicious node can send a false ARP reply, causing a gateway to send it traffic intended for another node."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L05-Security of Internet Protocols.pdf",
-      "pageNumber": 10,
-      "topic": "TCP/IP Security"
-    }
-  },
-  {
-    "id": 11,
-    "questionText": "What is the primary security issue with the Border Gateway Protocol (BGP) that allows for attacks like route hijacking?",
-    "options": [
-      "Route updates are unauthenticated, allowing any AS to inject false advertisements for arbitrary routes.",
-      "BGP messages are sent in plaintext, allowing attackers to easily sniff sensitive routing information.",
-      "BGP is vulnerable to buffer overflow attacks that can crash routers.",
-      "BGP routers often have weak default passwords that are easily guessed.",
-      "BGP does not have native support for IPv6, creating security gaps in modern networks."
-    ],
-    "correctAnswer": ["Route updates are unauthenticated, allowing any AS to inject false advertisements for arbitrary routes."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L05-Security of Internet Protocols.pdf",
-      "pageNumber": 10,
-      "topic": "TCP/IP Security"
-    }
-  },
-  {
-    "id": 12,
-    "questionText": "In Secure BGP (S-BGP), what is the purpose of an 'Address Attestation'?",
-    "options": [
-      "It provides digitally-signed authorization for an Autonomous System (AS) to advertise specified address blocks.",
-      "It encrypts the route update messages between peering routers.",
-      "It validates that a router's physical hardware has not been tampered with.",
-      "It signs every hop in a path advertisement to ensure path integrity.",
-      "It provides a secure timestamp for each route update to prevent replay attacks."
-    ],
-    "correctAnswer": ["It provides digitally-signed authorization for an Autonomous System (AS) to advertise specified address blocks."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L05-Security of Internet Protocols.pdf",
-      "pageNumber": 12,
-      "topic": "TCP/IP Security"
-    }
-  },
-  {
-    "id": 13,
-    "questionText": "In the standard penetration testing methodology, what step immediately follows 'Gaining Access'?",
-    "options": [
-      "Escalating Privilege",
-      "Scanning",
-      "Covering Tracks",
-      "Pilfering",
-      "Footprinting"
-    ],
-    "correctAnswer": ["Escalating Privilege"],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L04-Penetration_Testing.pdf",
-      "pageNumber": 2,
-      "topic": "Penetration Testing"
-    }
-  },
-  {
-    "id": 14,
-    "questionText": "Which of the following tools are primarily used for the 'Footprinting' (reconnaissance and information gathering) phase of a penetration test?",
-    "options": [
-      "whois, nslookup",
-      "Nmap, fping",
-      "Johntheripper, getadmin",
-      "zap, rootkits",
-      "Tcpdump, Lophtcrack"
-    ],
-    "correctAnswer": ["whois, nslookup"],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L04-Penetration_Testing.pdf",
-      "pageNumber": 2,
-      "topic": "Penetration Testing"
-    }
-  },
-  {
-    "id": 15,
-    "questionText": "What is a key difference between the 'Scanning' and 'Enumeration' phases in penetration testing?",
-    "options": [
-      "Enumeration is more intrusive and targeted, aiming to identify specific user accounts or resource shares.",
-      "Scanning is more intrusive than enumeration because it sends more packets.",
-      "Scanning is a passive process, while enumeration is an active one.",
-      "Enumeration always occurs before scanning in the standard methodology.",
-      "Scanning identifies user accounts, while enumeration identifies open ports and services."
-    ],
-    "correctAnswer": ["Enumeration is more intrusive and targeted, aiming to identify specific user accounts or resource shares."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L04-Penetration_Testing.pdf",
-      "pageNumber": 3,
-      "topic": "Penetration Testing"
-    }
-  },
-  {
-    "id": 16,
-    "questionText": "Why is social engineering an effective attack vector? Select all that apply.",
-    "options": [
-      "It manipulates legitimate users into undermining their own security system.",
-      "It is very cheap for the attacker and does not require specialized equipment.",
-      "It abuses trusted relationships between employees.",
-      "It requires highly specialized and expensive technical skills to execute."
-    ],
-    "correctAnswer": [
-      "It manipulates legitimate users into undermining their own security system.",
-      "It is very cheap for the attacker and does not require specialized equipment.",
-      "It abuses trusted relationships between employees."
-    ],
-    "answerType": "checkbox",
-    "meta": {
-      "sourceFile": "L04-Penetration_Testing.pdf",
-      "pageNumber": 7,
-      "topic": "Penetration Testing"
-    }
-  },
-  {
-    "id": 17,
-    "questionText": "An attacker calls an employee, pretends to be from the IT department for a major software vendor, and asks for user credentials for 'troubleshooting purposes.' What type of social engineering attack is this?",
-    "options": [
-      "Impersonation: Tech Support",
-      "Impersonation: Third-Party Authorization",
-      "Impersonation: Help Desk",
-      "Impersonation: Repairman",
-      "Computer Attack: Popup Window"
-    ],
-    "correctAnswer": ["Impersonation: Tech Support"],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L04-Penetration_Testing.pdf",
-      "pageNumber": 8,
-      "topic": "Penetration Testing"
-    }
-  },
-  {
-    "id": 18,
-    "questionText": "Which of the following events should trigger a penetration test? Select all that apply.",
-    "options": [
-      "Infrastructure is added or modified",
-      "Applications are added or modified",
-      "End user policies are changed",
-      "Security patches are installed",
-      "An employee goes on vacation"
-    ],
-    "correctAnswer": [
-      "Infrastructure is added or modified",
-      "Applications are added or modified",
-      "End user policies are changed",
-      "Security patches are installed"
-    ],
-    "answerType": "checkbox",
-    "meta": {
-      "sourceFile": "L04-Penetration_Testing.pdf",
-      "pageNumber": 6,
-      "topic": "Penetration Testing"
-    }
-  },
-  {
-    "id": 19,
-    "questionText": "In the cybercrime underground ecosystem, what is the primary role of a 'Botnet master'?",
-    "options": [
-      "They develop software to control vast numbers of zombie machines and rent them out to other actors.",
-      "They reverse-engineer software to find and sell new zero-day exploits.",
-      "They set up and manage phishing sites to steal user credentials.",
-      "They specialize in laundering money from stolen credit cards and bank accounts.",
-      "They write and distribute spam emails on behalf of others."
-    ],
-    "correctAnswer": ["They develop software to control vast numbers of zombie machines and rent them out to other actors."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L03 - Cybercrime.pdf",
-      "pageNumber": 1,
-      "topic": "Cybercrime"
-    }
-  },
-  {
-    "id": 20,
-    "questionText": "Which actor in the cybercrime underground is responsible for creating and selling exploit packs and kits?",
+    "questionText": "In the cybercrime underground, which actor is responsible for reverse-engineering software to develop and sell exploit packs and kits?",
     "options": [
       "Exploit developers",
       "Botnet masters",
@@ -359,7 +110,9 @@
       "Phishers",
       "Carders"
     ],
-    "correctAnswer": ["Exploit developers"],
+    "correctAnswer": [
+      "Exploit developers"
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L03 - Cybercrime.pdf",
@@ -368,44 +121,48 @@
     }
   },
   {
-    "id": 21,
-    "questionText": "What is the 'Pay-per-install' (PPI) model in the context of cybercrime?",
+    "id": 7,
+    "questionText": "What is the 'Pay-per-install' (PPI) model in the context of the cybercrime economy?",
     "options": [
-      "A malware distribution model where criminals are paid for each successful installation of malware on a victim's machine.",
-      "A business model for renting botnets for a fixed monthly fee.",
-      "A payment system used to cash out stolen credit cards.",
-      "A subscription service for purchasing the latest exploit kits.",
-      "A model for paying for 'bulletproof' web hosting services."
+      "A malware distribution model that bundles a traffic acquisition mechanism and an exploit server, where the attacker is paid for each successful infection.",
+      "A service for renting botnets for a fixed monthly fee, paid per installed bot.",
+      "A method for cashing out stolen credit cards, where the 'mule' is paid per transaction.",
+      "A subscription service for purchasing the latest exploit kits, paid per installation of the kit.",
+      "A model for paying for 'bulletproof' web hosting services, charged per server instance."
     ],
-    "correctAnswer": ["A malware distribution model where criminals are paid for each successful installation of malware on a victim's machine."],
+    "correctAnswer": [
+      "A malware distribution model that bundles a traffic acquisition mechanism and an exploit server, where the attacker is paid for each successful infection."
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L03 - Cybercrime.pdf",
-      "pageNumber": 5,
+      "pageNumber": 6,
       "topic": "Cybercrime"
     }
   },
   {
-    "id": 22,
-    "questionText": "Which modern technique provides a robust and hard-to-detect Command and Control (C&C) infrastructure for botnets?",
+    "id": 8,
+    "questionText": "What is the key difference between Fast Flux DNS and Random Domain Generation as botnet Command and Control (C&C) techniques?",
     "options": [
-      "Random Domain Generation, where bots generate many possible domains daily but only a few are registered by the botmaster.",
-      "A single, centralized IRC server with a hardcoded IP address.",
-      "A peer-to-peer (P2P) network where bots connect to a static list of peers.",
-      "Fast Flux DNS using a single, fixed domain name that can be easily blacklisted.",
-      "Using a public social media account, like Twitter, to post commands."
+      "Fast Flux rapidly changes the IP for a *single* domain, while Random Domain Generation creates *many* new domains daily.",
+      "Fast Flux is a P2P method, while Random Domain Generation is centralized.",
+      "Random Domain Generation is easier to blacklist because the domains are not legitimate.",
+      "Fast Flux is only used for sending spam, while Random Domain Generation is only for C&C.",
+      "Random Domain Generation is an older technique that has been replaced by Fast Flux."
     ],
-    "correctAnswer": ["Random Domain Generation, where bots generate many possible domains daily but only a few are registered by the botmaster."],
+    "correctAnswer": [
+      "Fast Flux rapidly changes the IP for a *single* domain, while Random Domain Generation creates *many* new domains daily."
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L03 - Cybercrime.pdf",
-      "pageNumber": 10,
+      "pageNumber": 9,
       "topic": "Cybercrime"
     }
   },
   {
-    "id": 23,
-    "questionText": "Based on the Storm botnet case study, what was the approximate user conversion rate for the 'Pharmacy' spam campaign (i.e., the ratio of sales to spams that reached an inbox)?",
+    "id": 9,
+    "questionText": "Based on the Storm botnet case study, what was the approximate *user conversion* rate for the 'Pharmacy' spam campaign (i.e., the ratio of sales to spams that reached an inbox)?",
     "options": [
       "1 in 1,737",
       "1 in 25",
@@ -413,7 +170,9 @@
       "1 in 7,142",
       "1 in 100"
     ],
-    "correctAnswer": ["1 in 1,737"],
+    "correctAnswer": [
+      "1 in 1,737"
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L03 - Cybercrime.pdf",
@@ -422,34 +181,18 @@
     }
   },
   {
-    "id": 24,
-    "questionText": "Why is setting up a successful online scamming operation, such as a fake pharmacy, considered difficult?",
-    "options": [
-      "It requires 'bulletproof' services for domain registration, DNS, and web hosting, which are expensive and hard to find.",
-      "The software required to build an e-commerce website is too complex for most criminals.",
-      "The logistics of shipping counterfeit goods internationally are nearly impossible to manage.",
-      "It is too difficult to generate a sufficient volume of spam traffic to attract customers.",
-      "Legitimate payment processors are eager to work with them, making it easy to get caught."
-    ],
-    "correctAnswer": ["It requires 'bulletproof' services for domain registration, DNS, and web hosting, which are expensive and hard to find."],
-    "answerType": "radio",
-    "meta": {
-      "sourceFile": "L03 - Cybercrime.pdf",
-      "pageNumber": 15,
-      "topic": "Cybercrime"
-    }
-  },
-  {
-    "id": 25,
-    "questionText": "Why do scam sites, such as those in pharmaceutical scams, almost always ship a product to customers?",
+    "id": 10,
+    "questionText": "Why do online pharmaceutical scam sites almost always ship a (counterfeit) product to customers?",
     "options": [
       "To avoid customer complaints, which can lead to payment processors shutting down their accounts and banks seizing their funds.",
-      "Because they are trying to build a legitimate brand reputation.",
+      "To build brand loyalty and attract repeat customers.",
       "To comply with international shipping regulations.",
-      "Because the cost of the counterfeit product is negligible.",
-      "To use the shipping data to launch further attacks on the customer."
+      "To confirm the victim's physical address for future attacks.",
+      "Because the cost of the counterfeit product is negligible."
     ],
-    "correctAnswer": ["To avoid customer complaints, which can lead to payment processors shutting down their accounts and banks seizing their funds."],
+    "correctAnswer": [
+      "To avoid customer complaints, which can lead to payment processors shutting down their accounts and banks seizing their funds."
+    ],
     "answerType": "radio",
     "meta": {
       "sourceFile": "L03 - Cybercrime.pdf",
@@ -458,45 +201,1771 @@
     }
   },
   {
-    "id": 26,
-    "questionText": "Match the DoS attack classifications with their correct descriptions. Select all correct pairs.",
+    "id": 11,
+    "questionText": "In the standard penetration testing methodology, what is the correct sequence of the first three steps?",
     "options": [
-      "Random Scanning — Each compromised computer probes random addresses.",
-      "Permutation Scanning — All compromised computers share a common pseudo-random permutation of the IP address space.",
-      "Signpost Scanning — Uses the communication patterns of the compromised computer to find new targets.",
-      "Hitlist Scanning — A portion of a list of targets is supplied to a compromised computer.",
-      "Hitlist Scanning — Each compromised computer probes random addresses.",
-      "Random Scanning — A portion of a list of targets is supplied to a compromised computer."
+      "Footprinting, Scanning, Enumeration",
+      "Scanning, Footprinting, Gaining Access",
+      "Enumeration, Scanning, Footprinting",
+      "Footprinting, Gaining Access, Scanning",
+      "Scanning, Enumeration, Gaining Access"
     ],
     "correctAnswer": [
-      "Random Scanning — Each compromised computer probes random addresses.",
-      "Permutation Scanning — All compromised computers share a common pseudo-random permutation of the IP address space.",
-      "Signpost Scanning — Uses the communication patterns of the compromised computer to find new targets.",
-      "Hitlist Scanning — A portion of a list of targets is supplied to a compromised computer."
+      "Footprinting, Scanning, Enumeration"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 2,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 12,
+    "questionText": "Which phase of penetration testing involves reconnaissance and gathering general information such as target IP address ranges, namespaces, and network topology?",
+    "options": [
+      "Footprinting",
+      "Scanning",
+      "Enumeration",
+      "Pilfering",
+      "Creating Back Doors"
+    ],
+    "correctAnswer": [
+      "Footprinting"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 2,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 13,
+    "questionText": "How does the 'Enumeration' phase differ from the 'Scanning' phase in penetration testing?",
+    "options": [
+      "Enumeration is more intrusive probing to identify valid user accounts or poorly protected resource shares.",
+      "Scanning is a passive process, while enumeration is an active one.",
+      "Enumeration identifies open ports, while scanning identifies running services.",
+      "Scanning is the final step, while enumeration is the first step.",
+      "Enumeration uses tools like Nmap, while Scanning uses tools like whois."
+    ],
+    "correctAnswer": [
+      "Enumeration is more intrusive probing to identify valid user accounts or poorly protected resource shares."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 3,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 14,
+    "questionText": "Why is social engineering an effective attack vector? (Select all that apply)",
+    "options": [
+      "It manipulates legitimate users into undermining their own security system.",
+      "It is very cheap for the attacker.",
+      "It abuses trusted relationships between employees.",
+      "It does not require specialized equipment or skills.",
+      "It is guaranteed to bypass all technical security controls."
+    ],
+    "correctAnswer": [
+      "It manipulates legitimate users into undermining their own security system.",
+      "It is very cheap for the attacker.",
+      "It abuses trusted relationships between employees.",
+      "It does not require specialized equipment or skills."
     ],
     "answerType": "checkbox",
     "meta": {
-      "sourceFile": "L02_DDoS_Attack.pdf",
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 7,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 15,
+    "questionText": "An attacker calls an employee, pretends to be another employee, and tells the help desk they 'forgot' their password. What specific social engineering technique is this?",
+    "options": [
+      "Impersonation: Help Desk",
+      "Impersonation: Tech Support",
+      "Impersonation: Third-Party Authorization",
+      "Impersonation: Trusted Authority Figure",
+      "Impersonation: Repairman"
+    ],
+    "correctAnswer": [
+      "Impersonation: Help Desk"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L04-Penetration_Testing.pdf",
+      "pageNumber": 8,
+      "topic": "Penetration Testing"
+    }
+  },
+  {
+    "id": 16,
+    "questionText": "What is the fundamental security vulnerability in the Internet Protocol (IP) that allows for anonymous DoS attacks?",
+    "options": [
+      "There is no built-in source IP authentication, allowing attackers to easily forge (spoof) the source address.",
+      "The destination IP address is not encrypted, allowing traffic to be redirected.",
+      "The 'Time to Live' (TTL) field is not authenticated, allowing for infinite routing loops.",
+      "The IP header checksum is weak and easily bypassed by attackers.",
+      "IP packets are connectionless and unreliable."
+    ],
+    "correctAnswer": [
+      "There is no built-in source IP authentication, allowing attackers to easily forge (spoof) the source address."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 4,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 17,
+    "questionText": "Why is it critical for the Transmission Control Protocol (TCP) to use random initial sequence numbers (ISNs)?",
+    "options": [
+      "To prevent an attacker from predicting sequence numbers and forging a TCP session on behalf of a spoofed IP address.",
+      "To ensure packets arrive in the correct order for reassembly.",
+      "To help the TCP congestion control algorithm determine network capacity.",
+      "To prevent SYN flood attacks by making the SYN packet unique.",
+      "To allow the server to store and retrieve the connection state efficiently."
+    ],
+    "correctAnswer": [
+      "To prevent an attacker from predicting sequence numbers and forging a TCP session on behalf of a spoofed IP address."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 7,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 18,
+    "questionText": "What is the function of the Address Resolution Protocol (ARP)?",
+    "options": [
+      "To map IP network addresses to hardware (MAC) addresses used by the data link protocol.",
+      "To exchange routing and reachability information among autonomous systems (AS).",
+      "To use a link-state routing algorithm for interior routing protocols.",
+      "To resolve human-readable domain names into IP addresses.",
+      "To establish a reliable, connection-oriented session between two hosts."
+    ],
+    "correctAnswer": [
+      "To map IP network addresses to hardware (MAC) addresses used by the data link protocol."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 8,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 19,
+    "questionText": "What is the primary security flaw in the Border Gateway Protocol (BGP) that enables route hijacking, as seen in the YouTube-Pakistan mishap?",
+    "options": [
+      "BGP path attestations (route updates) are unauthenticated.",
+      "BGP messages are not encrypted, allowing them to be sniffed.",
+      "BGP uses UDP, which is an unreliable transport protocol.",
+      "BGP routers often have weak default passwords that are easily guessed by attackers.",
+      "BGP does not have native support for IPv6, creating security gaps in modern networks."
+    ],
+    "correctAnswer": [
+      "BGP path attestations (route updates) are unauthenticated."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 10,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 20,
+    "questionText": "In the S-BGP design, what is the purpose of an 'Address Attestation'?",
+    "options": [
+      "It is a digitally-signed authorization from the owner of an address block, allowing a specific AS to advertise that block.",
+      "It is a digitally-signed authorization that validates every hop in a path advertisement.",
+      "It is a public key certificate for the router itself, used to establish an IPsec connection.",
+      "It is a certificate from a regional authority (RIR) that proves the AS is legitimate.",
+      "It is a timestamp used to prevent replay attacks on route updates."
+    ],
+    "correctAnswer": [
+      "It is a digitally-signed authorization from the owner of an address block, allowing a specific AS to advertise that block."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L05-Security of Internet Protocols.pdf",
+      "pageNumber": 12,
+      "topic": "TCP/IP Security"
+    }
+  },
+  {
+    "id": 21,
+    "questionText": "Which DNS record type is used to point to a name server for a domain (e.g., pointing to the 'gatech.edu' DNS server)?",
+    "options": [
+      "NS (Name Server)",
+      "A (Address)",
+      "MX (Mail Exchange)",
+      "TXT (Text)",
+      "CNAME (Canonical Name)"
+    ],
+    "correctAnswer": [
+      "NS (Name Server)"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L06-Domain Name Systems Security.pdf",
+      "pageNumber": 2,
+      "topic": "DNS Security"
+    }
+  },
+  {
+    "id": 22,
+    "questionText": "What is the purpose of the 16-bit 'Query ID' in a DNS packet?",
+    "options": [
+      "It is a random value used to link a DNS response to its original query.",
+      "It specifies the type of record being requested (e.g., A, MX, NS).",
+      "It indicates whether the query desires a recursive lookup.",
+      "It confirms whether the response is authoritative.",
+      "It authenticates the source of the DNS query."
+    ],
+    "correctAnswer": [
+      "It is a random value used to link a DNS response to its original query."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L06-Domain Name Systems Security.pdf",
+      "pageNumber": 3,
+      "topic": "DNS Security"
+    }
+  },
+  {
+    "id": 23,
+    "questionText": "In a 'Traditional Poisoning Attack', what is the major hurdle for an attacker if their first attempt to send a forged DNS response fails (i.e., the legitimate response arrives first)?",
+    "options": [
+      "The attacker must wait for the legitimate DNS record's Time-to-Live (TTL) to expire before the resolver will query for that record again.",
+      "The attacker must guess a 32-bit Query ID, which is computationally infeasible.",
+      "The attacker must be on the same local network as the resolver, which is difficult.",
+      "The attacker must compromise the root DNS server, not just the local resolver.",
+      "The resolver will permanently blacklist the attacker's IP address."
+    ],
+    "correctAnswer": [
+      "The attacker must wait for the legitimate DNS record's Time-to-Live (TTL) to expire before the resolver will query for that record again."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L06-Domain Name Systems Security.pdf",
+      "pageNumber": 6,
+      "topic": "DNS Security"
+    }
+  },
+  {
+    "id": 24,
+    "questionText": "What was the key innovation in Kaminsky's Poisoning Attack that made it so much more effective than traditional poisoning?",
+    "options": [
+      "By querying for random, non-existent subdomains, the attacker could bypass the TTL limitation and retry the attack immediately and continuously.",
+      "It used a much larger 32-bit Query ID to guess, making the attack faster.",
+      "It poisoned the root servers instead of a local resolver, affecting more users.",
+      "It did not require the attacker to send any packets, relying only on eavesdropping.",
+      "It hijacked the BGP route to the authoritative name server."
+    ],
+    "correctAnswer": [
+      "By querying for random, non-existent subdomains, the attacker could bypass the TTL limitation and retry the attack immediately and continuously."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L06-Domain Name Systems Security.pdf",
+      "pageNumber": 7,
+      "topic": "DNS Security"
+    }
+  },
+  {
+    "id": 25,
+    "questionText": "How does a DNS Rebinding attack bypass the browser's Same-Origin Policy to access internal network resources?",
+    "options": [
+      "It tricks the browser by returning a legitimate, external IP with a short TTL, and then, on the next query for the *same domain name*, returning a private, internal IP.",
+      "It uses DNSSEC to forge a certificate for the internal server, making the browser trust it.",
+      "It hijacks the BGP route to the internal server, redirecting all traffic.",
+      "It poisons the local DNS resolver with a new NS record for the internal domain.",
+      "It uses a Cross-Site Scripting (XSS) vulnerability to change the browser's origin."
+    ],
+    "correctAnswer": [
+      "It tricks the browser by returning a legitimate, external IP with a short TTL, and then, on the next query for the *same domain name*, returning a private, internal IP."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L06-Domain Name Systems Security.pdf",
+      "pageNumber": 8,
+      "topic": "DNS Security"
+    }
+  },
+  {
+    "id": 26,
+    "questionText": "Match the attack 'Injection' to its correct description from the lecture.",
+    "options": [
+      "Modifies back-end statement through user input.",
+      "Inserts Javascript into trusted sites.",
+      "Attackers modify file names.",
+      "Uses unpatched third party components.",
+      "Abuses lack of data encryption."
+    ],
+    "correctAnswer": [
+      "Modifies back-end statement through user input."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L07_Browser_Security_Models.pdf",
       "pageNumber": 1,
-      "topic": "DDoS Attacks"
+      "topic": "Browser Security"
     }
   },
   {
     "id": 27,
-    "questionText": "Select all the true statements about SYN Cookies.",
+    "questionText": "Which web threat model is considered the *most* lethal because it escapes browser isolation mechanisms and runs under the control of the OS?",
     "options": [
-      "SYN cookies require modified versions of TCP",
-      "SYN cookies lead to overall slower performance",
-      "The server must reject all TCP options because the server discards the SYN queue entry"
+      "Malware Attacker",
+      "Network Attacker",
+      "Web Attacker"
     ],
     "correctAnswer": [
-      "The server must reject all TCP options because the server discards the SYN queue entry"
+      "Malware Attacker"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L07_Browser_Security_Models.pdf",
+      "pageNumber": 4,
+      "topic": "Browser Security"
+    }
+  },
+  {
+    "id": 28,
+    "questionText": "What three components define an 'origin' for the browser's Same-Origin Policy (SOP) for the DOM?",
+    "options": [
+      "Protocol, Domain, and Port",
+      "Protocol, Domain, and Path",
+      "Domain, Path, and Parameters",
+      "IP Address, Domain, and Protocol",
+      "Protocol, Certificate, and Domain"
+    ],
+    "correctAnswer": [
+      "Protocol, Domain, and Port"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L07_Browser_Security_Models.pdf",
+      "pageNumber": 7,
+      "topic": "Browser Security"
+    }
+  },
+  {
+    "id": 29,
+    "questionText": "What is the primary goal of a Content Security Policy (CSP)?",
+    "options": [
+      "To prevent and limit the damage of Cross-Site Scripting (XSS) by instructing the browser to only load resources from a whitelist.",
+      "To encrypt all communication between the browser and server, replacing the need for HTTPS.",
+      "To securely sandbox iframes so they cannot interact with the parent page.",
+      "To relax the Same-Origin Policy in a controlled way to allow resource sharing.",
+      "To ensure the integrity of subresources (like scripts) loaded from third-party CDNs."
+    ],
+    "correctAnswer": [
+      "To prevent and limit the damage of Cross-Site Scripting (XSS) by instructing the browser to only load resources from a whitelist."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L07_Browser_Security_Models.pdf",
+      "pageNumber": 12,
+      "topic": "Browser Security"
+    }
+  },
+  {
+    "id": 30,
+    "questionText": "What is the purpose of Cross-Origin Resource Sharing (CORS)?",
+    "options": [
+      "To provide a technique for *relaxing* the same-origin policy, allowing a website to consume content from a different origin via a whitelist.",
+      "To *strictly enforce* the same-origin policy by blocking all cross-origin requests.",
+      "To encrypt resources shared between different origins.",
+      "To check the integrity of subresources loaded from a CDN using a cryptographic hash.",
+      "To prevent Cross-Site Scripting (XSS) attacks."
+    ],
+    "correctAnswer": [
+      "To provide a technique for *relaxing* the same-origin policy, allowing a website to consume content from a different origin via a whitelist."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L07_Browser_Security_Models.pdf",
+      "pageNumber": 16,
+      "topic": "Browser Security"
+    }
+  },
+  {
+    "id": 31,
+    "questionText": "What are the three common methods discussed in the lecture for storing session tokens?",
+    "options": [
+      "In a browser cookie",
+      "Embedded in all URL links",
+      "In a hidden form field",
+      "In the server's database only",
+      "In the HTML5 local storage",
+      "Using a hardware token"
+    ],
+    "correctAnswer": [
+      "In a browser cookie",
+      "Embedded in all URL links",
+      "In a hidden form field"
     ],
     "answerType": "checkbox",
     "meta": {
-      "sourceFile": "L01_Week1_Summary.pdf",
+      "sourceFile": "L08_Web_Session_Management.pdf",
       "pageNumber": 1,
-      "topic": "TCP/IP Security"
+      "topic": "Session Management"
+    }
+  },
+  {
+    "id": 32,
+    "questionText": "What is the critical security flaw in the logout procedure of many web sites?",
+    "options": [
+      "They delete the SessionToken from the client, but fail to mark the session token as expired on the server.",
+      "They expire the token on the server, but fail to send a command to delete it from the client's browser.",
+      "They only delete the token from hidden form fields, not from cookies, allowing for session hijacking.",
+      "They use session tokens that are too short and can be easily guessed.",
+      "They send the logout command over HTTP instead of HTTPS."
+    ],
+    "correctAnswer": [
+      "They delete the SessionToken from the client, but fail to mark the session token as expired on the server."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L08_Web_Session_Management.pdf",
+      "pageNumber": 3,
+      "topic": "Session Management"
+    }
+  },
+  {
+    "id": 33,
+    "questionText": "Why is it dangerous for a website to use HTTPS for login but then fall back to HTTP for subsequent pages?",
+    "options": [
+      "An attacker (e.g., at a wireless café) can sniff the subsequent unencrypted HTTP traffic and steal the session token (cookie).",
+      "It allows an attacker to perform a man-in-the-middle attack on the initial SSL handshake.",
+      "It makes the session token predictable because it is sent over HTTP.",
+      "It allows a Cross-Site Scripting (XSS) exploit to bypass the Same-Origin Policy.",
+      "It causes the browser to reject the server's certificate."
+    ],
+    "correctAnswer": [
+      "An attacker (e.g., at a wireless café) can sniff the subsequent unencrypted HTTP traffic and steal the session token (cookie)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L08_Web_Session_Management.pdf",
+      "pageNumber": 4,
+      "topic": "Session Management"
+    }
+  },
+  {
+    "id": 34,
+    "questionText": "What is the primary defense against a Session Fixation attack?",
+    "options": [
+      "Always issue a new session token when a user elevates from an anonymous to a logged-in state.",
+      "Bind the session token to the client's IP address.",
+      "Use only HttpOnly cookies to store session tokens.",
+      "Enforce HTTPS for the entire session.",
+      "Use a cryptographically secure, unpredictable session token."
+    ],
+    "correctAnswer": [
+      "Always issue a new session token when a user elevates from an anonymous to a logged-in state."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L08_Web_Session_Management.pdf",
+      "pageNumber": 6,
+      "topic": "Session Management"
+    }
+  },
+  {
+    "id": 35,
+    "questionText": "Which of the following items *CANNOT* be encrypted by HTTPS and remain visible to a network attacker?",
+    "options": [
+      "Host Addresses and Port numbers",
+      "Request URL and Query parameters",
+      "Headers and Cookies",
+      "The content of the webpage"
+    ],
+    "correctAnswer": [
+      "Host Addresses and Port numbers"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L09-HTTPS.pdf",
+      "pageNumber": 2,
+      "topic": "HTTPS"
+    }
+  },
+  {
+    "id": 36,
+    "questionText": "How does an SSL-strip (HTTP downgrading) attack work?",
+    "options": [
+      "An attacker intercepts the user's initial HTTP request and prevents the browser from upgrading to HTTPS, serving a non-secure version of the site while maintaining a secure connection to the server.",
+      "The attacker forges a valid certificate for the target site, allowing them to decrypt all traffic.",
+      "The attacker floods the server's SSL/TLS handshake port, causing a denial of service.",
+      "The attacker steals the server's private key and impersonates the server directly.",
+      "The attacker uses a DNS rebinding attack to point the user to a malicious IP address."
+    ],
+    "correctAnswer": [
+      "An attacker intercepts the user's initial HTTP request and prevents the browser from upgrading to HTTPS, serving a non-secure version of the site while maintaining a secure connection to the server."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L09-HTTPS.pdf",
+      "pageNumber": 6,
+      "topic": "HTTPS"
+    }
+  },
+  {
+    "id": 37,
+    "questionText": "What is the purpose of the HTTP Strict Transport Security (HSTS) header?",
+    "options": [
+      "It instructs the browser to *only* connect to the site using HTTPS for a specified period, preventing SSL-strip attacks on subsequent visits.",
+      "It pins a specific public key or CA to the site to prevent man-in-the-middle attacks from forged certificates.",
+      "It enables Certificate Transparency, forcing CAs to log all issued certificates for that domain.",
+      "It encrypts HTTP headers that are normally sent in plaintext, such as cookies.",
+      "It relaxes the Same-Origin Policy to allow secure sharing of resources."
+    ],
+    "correctAnswer": [
+      "It instructs the browser to *only* connect to the site using HTTPS for a specified period, preventing SSL-strip attacks on subsequent visits."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L09-HTTPS.pdf",
+      "pageNumber": 7,
+      "topic": "HTTPS"
+    }
+  },
+  {
+    "id": 38,
+    "questionText": "What is the core idea behind 'Certificate Transparency' (CT) as a solution to certificate mis-issuance?",
+    "options": [
+      "CAs must advertise a log of all certificates they issue, and browsers will only trust a certificate if it is published on a public log server.",
+      "A site declares which CAs are allowed to sign its certificate, and the browser rejects certificates from other CAs on subsequent visits.",
+      "All certificates must be signed by a single, highly-secure root CA.",
+      "The browser displays all certificate information directly to the user for manual verification.",
+      "Certificates are no longer used; authentication is handled by the DNSSEC protocol."
+    ],
+    "correctAnswer": [
+      "CAs must advertise a log of all certificates they issue, and browsers will only trust a certificate if it is published on a public log server."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L09-HTTPS.pdf",
+      "pageNumber": 8,
+      "topic": "HTTPS"
+    }
+  },
+  {
+    "id": 39,
+    "questionText": "What is 'packing' as a malware obfuscation technique?",
+    "options": [
+      "Transforming (e.g., compressing or encrypting) the malware's machine code and bundling it with an 'unpack code' stub that reverses the transformation at runtime.",
+      "Hiding the malware's command-and-control traffic inside legitimate-looking HTTP requests.",
+      "Using a rootkit to hide the malware's files and processes from the operating system.",
+      "Using an emulator-based obfuscation to translate x86 instructions to a custom bytecode.",
+      "Inserting a large amount of 'junk code' to confuse static analysis."
+    ],
+    "correctAnswer": [
+      "Transforming (e.g., compressing or encrypting) the malware's machine code and bundling it with an 'unpack code' stub that reverses the transformation at runtime."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L10 - Advanced Malware Analysis.pdf",
+      "pageNumber": 4,
+      "topic": "Malware Analysis"
+    }
+  },
+  {
+    "id": 40,
+    "questionText": "What is 'The Malware Uncertainty Principle' in the context of malware analysis?",
+    "options": [
+      "The principle that a robust analyzer is typically invasive, and its presence can be detected by malware, causing the malware to change its behavior or refuse to run.",
+      "The principle that malware code is too complex to be fully understood by any single analyst.",
+      "The use of random nonces in malware encryption, making it impossible to deterministically decrypt.",
+      "The theory that malware cannot be detected by signature-based scanners due to polymorphism.",
+      "The undecidable problem of determining if two Turing machines are equal."
+    ],
+    "correctAnswer": [
+      "The principle that a robust analyzer is typically invasive, and its presence can be detected by malware, causing the malware to change its behavior or refuse to run."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L10 - Advanced Malware Analysis.pdf",
+      "pageNumber": 6,
+      "topic": "Malware Analysis"
+    }
+  },
+  {
+    "id": 41,
+    "questionText": "Which of the following are listed as formal requirements for a transparent malware analyzer? (Select all that apply)",
+    "options": [
+      "Higher Privilege (than the malware)",
+      "No non-privileged side-effects",
+      "Identical basic instruction execution semantics",
+      "Transparent exception handling",
+      "Slower, step-by-step execution to allow for detailed logging"
+    ],
+    "correctAnswer": [
+      "Higher Privilege (than the malware)",
+      "No non-privileged side-effects",
+      "Identical basic instruction execution semantics",
+      "Transparent exception handling"
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L10 - Advanced Malware Analysis.pdf",
+      "pageNumber": 11,
+      "topic": "Malware Analysis"
+    }
+  },
+  {
+    "id": 42,
+    "questionText": "How does the Ether malware analyzer achieve high transparency (e.g., higher privilege and identical instruction execution semantics)?",
+    "options": [
+      "It uses hardware virtualization (Intel VT) to run the analyzer in a hypervisor, completely outside the guest OS where the malware executes.",
+      "It uses full system emulation (like QEMU) to simulate the hardware, which allows it to pause and inspect the malware.",
+      "It runs as a kernel-level driver inside the guest OS, giving it privilege over user-mode malware.",
+      "It uses static analysis and advanced decompilation, so it never has to run the malware.",
+      "It uses a lightweight sandbox that runs inside the malware's own process space."
+    ],
+    "correctAnswer": [
+      "It uses hardware virtualization (Intel VT) to run the analyzer in a hypervisor, completely outside the guest OS where the malware executes."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L10 - Advanced Malware Analysis.pdf",
+      "pageNumber": 11,
+      "topic": "Malware Analysis"
+    }
+  },
+  {
+    "id": 43,
+    "questionText": "How does emulator-based obfuscation (e.g., VMProtect) work to hide malware?",
+    "options": [
+      "It translates the original x86 malware into a custom bytecode (language L) and bundles it with an emulator that interprets this bytecode at runtime.",
+      "It emulates a virtual machine (like VMWare) to detect if it's being analyzed, and refuses to run if it is.",
+      "It runs the malware in an emulated CPU to hide it from the host OS's antivirus.",
+      "It emulates network traffic to trick dynamic analyzers into thinking it's benign.",
+      "It emulates user mouse movements and keyboard clicks to defeat bot detection."
+    ],
+    "correctAnswer": [
+      "It translates the original x86 malware into a custom bytecode (language L) and bundles it with an emulator that interprets this bytecode at runtime."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L10 - Advanced Malware Analysis.pdf",
+      "pageNumber": 14,
+      "topic": "Malware Analysis"
+    }
+  },
+  {
+    "id": 44,
+    "questionText": "How does the 'FairPlay MITM' attack enable the installation of malicious iOS apps?",
+    "options": [
+      "An attacker purchases an app, intercepts and saves its authorization code, and then uses a malicious 3rd-party client (simulating iTunes) to install apps on a victim's device using that saved code.",
+      "It exploits a buffer overflow in Apple's FairPlay DRM, allowing for arbitrary code execution.",
+      "It jailbreaks the phone by connecting it to a malicious PC, bypassing FairPlay entirely.",
+      "It uses a toolchain attack (XcodeGhost) to infect the app before it is signed by Apple.",
+      "It tricks the user into entering their Apple ID and password, which the attacker then uses to purchase and install malware."
+    ],
+    "correctAnswer": [
+      "An attacker purchases an app, intercepts and saves its authorization code, and then uses a malicious 3rd-party client (simulating iTunes) to install apps on a victim's device using that saved code."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L11 - Advanced Malware Analysis of Mobile.pdf",
+      "pageNumber": 3,
+      "topic": "Mobile Malware"
+    }
+  },
+  {
+    "id": 45,
+    "questionText": "What is a 'Toolchain Attack' like XcodeGhost?",
+    "options": [
+      "An attack where the developer's compiler/linker (e.g., Xcode) is modified, causing all apps compiled with it to be infected with malware.",
+      "An attack that uses a chain of different exploits (e.g., browser, kernel, sandbox) to gain root access.",
+      "An attack that chains together multiple malicious apps to work in concert.",
+      "An attack on the hardware supply chain that infects the device before the user receives it.",
+      "An attack that infects the tools on the device itself, like the shell or system libraries."
+    ],
+    "correctAnswer": [
+      "An attack where the developer's compiler/linker (e.g., Xcode) is modified, causing all apps compiled with it to be infected with malware."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L11 - Advanced Malware Analysis of Mobile.pdf",
+      "pageNumber": 7,
+      "topic": "Mobile Malware"
+    }
+  },
+  {
+    "id": 46,
+    "questionText": "How did the 'Jekyll' app demonstrate a way to bypass the Apple App Store review process?",
+    "options": [
+      "It was built with a deliberate, remotely-exploitable vulnerability, and malicious logic was hidden in code 'gadgets' that were only assembled at runtime via ROP.",
+      "It was compiled with a malicious version of Xcode (XcodeGhost), so the malicious code was injected automatically.",
+      "It used the FairPlay MITM attack to get installed, bypassing the App Store entirely.",
+      "It abused legitimate iOS Private APIs in a way that the App Store review process did not detect as malicious.",
+      "It was a 'repackaged' version of a legitimate, popular app."
+    ],
+    "correctAnswer": [
+      "It was built with a deliberate, remotely-exploitable vulnerability, and malicious logic was hidden in code 'gadgets' that were only assembled at runtime via ROP."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L11 - Advanced Malware Analysis of Mobile.pdf",
+      "pageNumber": 8,
+      "topic": "Mobile Malware"
+    }
+  },
+  {
+    "id": 47,
+    "questionText": "Why is 'repackaging' a legitimate app such an effective way to write and distribute mobile malware?",
+    "options": [
+      "The legitimate app is already popular and well-advertised, providing a large, trusting user base for the malware.",
+      "It is easier to get a repackaged app through the App Store review process than a new app.",
+      "Repackaged apps are smaller and download faster than original malware.",
+      "Legitimate apps already have all the permissions the malware needs to function.",
+      "It guarantees the app will not crash, making the malware more stable."
+    ],
+    "correctAnswer": [
+      "The legitimate app is already popular and well-advertised, providing a large, trusting user base for the malware."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L11 - Advanced Malware Analysis of Mobile.pdf",
+      "pageNumber": 10,
+      "topic": "Mobile Malware"
+    }
+  },
+  {
+    "id": 48,
+    "questionText": "What is the primary function of the TaintDroid mobile analysis tool?",
+    "options": [
+      "It performs dynamic taint tracking to analyze information flow from a 'source' (e.g., contacts) to a 'sink' (e.g., the Internet).",
+      "It performs static analysis on ARM assembly to detect privacy leaks.",
+      "It checks for suspicious combinations of permissions requested in the app's manifest.",
+      "It detects repackaged or cloned applications using fuzzy hashing of Java methods.",
+      "It compares an app's permissions against its app store description using NLP."
+    ],
+    "correctAnswer": [
+      "It performs dynamic taint tracking to analyze information flow from a 'source' (e.g., contacts) to a 'sink' (e.g., the Internet)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L11 - Advanced Malware Analysis of Mobile.pdf",
+      "pageNumber": 11,
+      "topic": "Mobile Malware"
+    }
+  },
+  {
+    "id": 49,
+    "questionText": "In the context of mobile app data flow analysis, which of the following is considered a 'Sink' (a data destination)?",
+    "options": [
+      "Internet (socket)",
+      "Device Location",
+      "Calendar",
+      "Contacts",
+      "Device Id"
+    ],
+    "correctAnswer": [
+      "Internet (socket)"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L11 - Advanced Malware Analysis of Mobile.pdf",
+      "pageNumber": 15,
+      "topic": "Mobile Malware"
+    }
+  },
+  {
+    "id": 50,
+    "questionText": "What is the key idea behind the STAMP approach to mobile app analysis, which aims to solve the scalability problem of analyzing Android's 3.4M+ lines of code?",
+    "options": [
+      "It abstracts the Android/Java framework into a set of 'models' (over 500) to make whole-program, context-sensitive analysis practical.",
+      "It only performs dynamic analysis in a sandbox, ignoring static analysis as 'too expensive'.",
+      "It uses manual code reversing for all apps, which is slow but precise.",
+      "It analyzes the hardware (HW) level for data leaks, bypassing the complex Android code.",
+      "It only analyzes the app's manifest file and permissions, not the code itself."
+    ],
+    "correctAnswer": [
+      "It abstracts the Android/Java framework into a set of 'models' (over 500) to make whole-program, context-sensitive analysis practical."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L11 - Advanced Malware Analysis of Mobile.pdf",
+      "pageNumber": 14,
+      "topic": "Mobile Malware"
+    }
+  },
+  {
+    "id": 51,
+    "questionText": "According to the lecture, the Internet is a scale-free network. What can be inferred about its tolerance to failures and attacks?",
+    "options": [
+      "High tolerance to random failures, low tolerance to attacks.",
+      "Low tolerance to random failures, high tolerance to attacks.",
+      "High tolerance to both random failures and attacks.",
+      "Low tolerance to both random failures and attacks."
+    ],
+    "correctAnswer": [
+      "High tolerance to random failures, low tolerance to attacks."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L21_Attack_Tolerant_Systems.pdf",
+      "pageNumber": 1,
+      "topic": "Attack Tolerant Systems"
+    }
+  },
+  {
+    "id": 52,
+    "questionText": "What is the security trade-off when replicating data across multiple servers, as discussed in the lecture?",
+    "options": [
+      "Confidentiality is weaker, but integrity and availability are better protected.",
+      "Confidentiality is stronger, but integrity and availability are weaker.",
+      "All three (confidentiality, integrity, availability) become stronger.",
+      "All three (confidentiality, integrity, availability) become weaker."
+    ],
+    "correctAnswer": [
+      "Confidentiality is weaker, but integrity and availability are better protected."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L21_Attack_Tolerant_Systems.pdf",
+      "pageNumber": 2,
+      "topic": "Attack Tolerant Systems"
+    }
+  },
+  {
+    "id": 53,
+    "questionText": "In Shamir's (k, n) threshold secret sharing scheme, what is the minimum number of pieces (shares) required to reconstruct the secret D?",
+    "options": [
+      "k",
+      "n",
+      "k-1",
+      "n-1",
+      "k+1"
+    ],
+    "correctAnswer": [
+      "k"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L21_Attack_Tolerant_Systems.pdf",
+      "pageNumber": 4,
+      "topic": "Attack Tolerant Systems"
+    }
+  },
+  {
+    "id": 54,
+    "questionText": "To achieve practical Byzantine fault tolerance in an asynchronous system, what is the minimum number of replicas needed, where 'f' is the number of faulty replicas?",
+    "options": [
+      "3f + 1",
+      "2f + 1",
+      "f + 1",
+      "n - f"
+    ],
+    "correctAnswer": [
+      "3f + 1"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L21_Attack_Tolerant_Systems.pdf",
+      "pageNumber": 10,
+      "topic": "Attack Tolerant Systems"
+    }
+  },
+  {
+    "id": 55,
+    "questionText": "Why can't traditional fault tolerance techniques (using identical replicas) be directly applied to achieve *attack* tolerance?",
+    "options": [
+      "Because all replicas run the same program, a single attack can compromise all of them.",
+      "Because fault tolerance requires 3f+1 replicas, which is too many for attack tolerance.",
+      "Because fault tolerance only protects availability, not confidentiality or integrity.",
+      "Because fault tolerance relies on a central \"voter\" which becomes a single point of failure for an attacker."
+    ],
+    "correctAnswer": [
+      "Because all replicas run the same program, a single attack can compromise all of them."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L21_Attack_Tolerant_Systems.pdf",
+      "pageNumber": 10,
+      "topic": "Attack Tolerant Systems"
+    }
+  },
+  {
+    "id": 56,
+    "questionText": "According to the lecture, which of the following tasks are commonly performed by botnets? (Select all that apply)",
+    "options": [
+      "Sending spam",
+      "Distributed Denial of Service (DDoS) attacks",
+      "Click fraud",
+      "Phishing & pharming attacks",
+      "Key logging & data/identity theft"
+    ],
+    "correctAnswer": [
+      "Sending spam",
+      "Distributed Denial of Service (DDoS) attacks",
+      "Click fraud",
+      "Phishing & pharming attacks",
+      "Key logging & data/identity theft"
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L12_Botnet_Detection.pdf",
+      "pageNumber": 2,
+      "topic": "Botnet Detection"
+    }
+  },
+  {
+    "id": 57,
+    "questionText": "What are the key guidelines for distinguishing botnet activities from normal network traffic?",
+    "options": [
+      "Bot activity is non-human, and botnet activities are coordinated.",
+      "Bot activity is always encrypted, and normal traffic is not.",
+      "Bot activity is always high-volume, and normal traffic is low-volume.",
+      "Bot activity uses P2P protocols, and normal traffic uses HTTP."
+    ],
+    "correctAnswer": [
+      "Bot activity is non-human, and botnet activities are coordinated."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L12_Botnet_Detection.pdf",
+      "pageNumber": 3,
+      "topic": "Botnet Detection"
+    }
+  },
+  {
+    "id": 58,
+    "questionText": "What is the \"Vertical Dialog Correlation\" approach used by the BotHunter system?",
+    "options": [
+      "It correlates a sequence of events over time that map to a known bot infection lifecycle (e.g., scan, infection, C&C comms).",
+      "It correlates similar activities happening horizontally across many different hosts at the same time.",
+      "It correlates DNS traffic with HTTP traffic to find C&C servers.",
+      "It correlates inbound network traffic with outbound network traffic to detect data exfiltration."
+    ],
+    "correctAnswer": [
+      "It correlates a sequence of events over time that map to a known bot infection lifecycle (e.g., scan, infection, C&C comms)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L12_Botnet_Detection.pdf",
+      "pageNumber": 4,
+      "topic": "Botnet Detection"
+    }
+  },
+  {
+    "id": 59,
+    "questionText": "The BotMiner system uses two \"planes\" for detection. What are these two planes and what do they monitor?",
+    "options": [
+      "C-Plane (monitoring C&C communication) and A-Plane (monitoring malicious activities).",
+      "Vertical-Plane (monitoring time-based events) and Horizontal-Plane (monitoring host-based events).",
+      "DNS-Plane (monitoring DNS requests) and HTTP-Plane (monitoring web traffic).",
+      "Inbound-Plane (monitoring exploits) and Outbound-Plane (monitoring spam)."
+    ],
+    "correctAnswer": [
+      "C-Plane (monitoring C&C communication) and A-Plane (monitoring malicious activities)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L12_Botnet_Detection.pdf",
+      "pageNumber": 7,
+      "topic": "Botnet Detection"
+    }
+  },
+  {
+    "id": 60,
+    "questionText": "What are some anomalous DNS lookup behaviors mentioned in the lecture that can help identify botnet C&C domains using Dynamic DNS services? (Select all that apply)",
+    "options": [
+      "A domain is looked up by a very large number of hosts but is not popular or known to search engines.",
+      "A sudden, exponential spike in DNS requests for a domain (e.g., as bots boot up).",
+      "The domain name string looks completely random.",
+      "The domain resolves to a blacklisted IP address."
+    ],
+    "correctAnswer": [
+      "A domain is looked up by a very large number of hosts but is not popular or known to search engines.",
+      "A sudden, exponential spike in DNS requests for a domain (e.g., as bots boot up).",
+      "The domain name string looks completely random."
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L12_Botnet_Detection.pdf",
+      "pageNumber": 12,
+      "topic": "Botnet Detection"
+    }
+  },
+  {
+    "id": 61,
+    "questionText": "What is the defining characteristic that differentiates \"Hot storage\" from \"Cold storage\" for Bitcoin wallets?",
+    "options": [
+      "Hot storage is online; Cold storage is offline.",
+      "Hot storage is for large amounts; Cold storage is for small amounts.",
+      "Hot storage uses encryption; Cold storage does not.",
+      "Hot storage is a hardware device; Cold storage is a paper wallet."
+    ],
+    "correctAnswer": [
+      "Hot storage is online; Cold storage is offline."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L16_New_and_Alternative_Cryptocurrencies.pdf",
+      "pageNumber": 1,
+      "topic": "Cryptocurrencies"
+    }
+  },
+  {
+    "id": 62,
+    "questionText": "What problem does a 'Hierarchical Wallet' solve?",
+    "options": [
+      "It allows a hot wallet to generate new public key addresses for a cold wallet without the cold wallet needing to be online.",
+      "It stores all keys in a single, hierarchical file for easier backup.",
+      "It automatically proves the reserve of an online exchange.",
+      "It enforces a hierarchy of spending limits for different users."
+    ],
+    "correctAnswer": [
+      "It allows a hot wallet to generate new public key addresses for a cold wallet without the cold wallet needing to be online."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L16_New_and_Alternative_Cryptocurrencies.pdf",
+      "pageNumber": 2,
+      "topic": "Cryptocurrencies"
+    }
+  },
+  {
+    "id": 63,
+    "questionText": "What is the key security property of a hierarchical wallet's 'address generation info' that is given to the hot side?",
+    "options": [
+      "It does not leak any information about the corresponding private keys (which stay on the cold side).",
+      "It is heavily encrypted and requires a password to use.",
+      "It can only generate a maximum of 1000 addresses before expiring.",
+      "It is linked to the user's physical identity."
+    ],
+    "correctAnswer": [
+      "It does not leak any information about the corresponding private keys (which stay on the cold side)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L16_New_and_Alternative_Cryptocurrencies.pdf",
+      "pageNumber": 3,
+      "topic": "Cryptocurrencies"
+    }
+  },
+  {
+    "id": 64,
+    "questionText": "How does a Bitcoin exchange use a Merkle tree to prove its total customer deposits (liabilities) as part of a 'Proof of Reserve'?",
+    "options": [
+      "It builds a Merkle tree of all user accounts, where each hash pointer includes the total value of the subtree beneath it, and then publishes the root hash and total value.",
+      "It builds a Merkle tree of its own private keys, proving it has control over the funds.",
+      "It builds a Merkle tree of all transactions, which is just the standard Bitcoin blockchain.",
+      "It builds a Merkle tree of all other exchanges to compare its reserves."
+    ],
+    "correctAnswer": [
+      "It builds a Merkle tree of all user accounts, where each hash pointer includes the total value of the subtree beneath it, and then publishes the root hash and total value."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L16_New_and_Alternative_Cryptocurrencies.pdf",
+      "pageNumber": 5,
+      "topic": "Cryptocurrencies"
+    }
+  },
+  {
+    "id": 65,
+    "questionText": "What is the `OP_RETURN` instruction used for in Bitcoin?",
+    "options": [
+      "To create a provably unspendable output that can be used to store arbitrary data (like a timestamp) on the blockchain.",
+      "To return a transaction fee to the sender if the transaction fails.",
+      "To return a coin to its original owner in case of fraud.",
+      "To broadcast an error message to all nodes in the network."
+    ],
+    "correctAnswer": [
+      "To create a provably unspendable output that can be used to store arbitrary data (like a timestamp) on the blockchain."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L16_New_and_Alternative_Cryptocurrencies.pdf",
+      "pageNumber": 13,
+      "topic": "Cryptocurrencies"
+    }
+  },
+  {
+    "id": 66,
+    "questionText": "What is the key difference between an 'Exploratory (Evasion) attack' and a 'Causative (Data Poisoning) attack' on a machine learning system?",
+    "options": [
+      "An Evasion attack tries to *evade* a trained model, while a Poisoning attack tries to corrupt the *training process* to produce a wrong model.",
+      "An Evasion attack is a type of data poisoning.",
+      "A Poisoning attack tries to *evade* a trained model, while an Evasion attack tries to corrupt the *training process*.",
+      "An Evasion attack targets the features, while a Poisoning attack targets the labels."
+    ],
+    "correctAnswer": [
+      "An Evasion attack tries to *evade* a trained model, while a Poisoning attack tries to corrupt the *training process* to produce a wrong model."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L18_Data _Poisoning_and_Model_Evasion.pdf",
+      "pageNumber": 3,
+      "topic": "Adversarial Machine Learning"
+    }
+  },
+  {
+    "id": 67,
+    "questionText": "What is the basic detection model used by the PAYL (Payload-Based Anomaly Detection System)?",
+    "options": [
+      "It models the normal frequency distribution of n-grams (e.g., bytes) in a service's payload and flags deviations as anomalous.",
+      "It uses a decision tree to classify packets based on their header data.",
+      "It uses expert-written signatures to find known attack patterns in the payload.",
+      "It clusters packets based on their source and destination IP addresses."
+    ],
+    "correctAnswer": [
+      "It models the normal frequency distribution of n-grams (e.g., bytes) in a service's payload and flags deviations as anomalous."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L18_Data _Poisoning_and_Model_Evasion.pdf",
+      "pageNumber": 5,
+      "topic": "Adversarial Machine Learning"
+    }
+  },
+  {
+    "id": 68,
+    "questionText": "How does a 'Polymorphic Blending Attack' attempt to evade an anomaly detection system like PAYL?",
+    "options": [
+      "It encrypts and pads its payload to mimic the statistical properties (like byte frequency) of legitimate traffic.",
+      "It uses a rootkit to hide its network traffic from the IDS.",
+      "It sends its attack packets at a very low and slow rate to avoid detection.",
+      "It poisons the training data of the PAYL model."
+    ],
+    "correctAnswer": [
+      "It encrypts and pads its payload to mimic the statistical properties (like byte frequency) of legitimate traffic."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L18_Data _Poisoning_and_Model_Evasion.pdf",
+      "pageNumber": 7,
+      "topic": "Adversarial Machine Learning"
+    }
+  },
+  {
+    "id": 69,
+    "questionText": "According to the evaluation, is it difficult for an attacker to learn the 'artificial normal profile' needed to create a blending attack against PAYL?",
+    "options": [
+      "No, it's easy; the lecture shows it can require as few as 8-20 packets.",
+      "Yes, it's very difficult; the lecture shows it requires millions of packets.",
+      "It is impossible, because the attacker cannot see the normal traffic.",
+      "It is easy to learn the 1-gram model but impossible to learn the 2-gram model."
+    ],
+    "correctAnswer": [
+      "No, it's easy; the lecture shows it can require as few as 8-20 packets."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L18_Data _Poisoning_and_Model_Evasion.pdf",
+      "pageNumber": 10,
+      "topic": "Adversarial Machine Learning"
+    }
+  },
+  {
+    "id": 70,
+    "questionText": "What was the objective of the data poisoning attack against the Polygraph worm signature generator?",
+    "options": [
+      "To craft fake anomalous flows that confuse the clustering algorithm, forcing the system to generate useless signatures (e.g., based on fake invariants) that produce false negatives.",
+      "To craft fake anomalous flows that cause the system to generate signatures with too many false positives.",
+      "To evade the Polygraph model by mimicking the byte frequency of normal traffic.",
+      "To crash the Polygraph system with a denial-of-service attack."
+    ],
+    "correctAnswer": [
+      "To craft fake anomalous flows that confuse the clustering algorithm, forcing the system to generate useless signatures (e.g., based on fake invariants) that produce false negatives."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L18_Data _Poisoning_and_Model_Evasion.pdf",
+      "pageNumber": 16,
+      "topic": "Adversarial Machine Learning"
+    }
+  },
+  {
+    "id": 71,
+    "questionText": "What are the two primary phases of a supervised machine learning process?",
+    "options": [
+      "Training (estimating a prediction function from labeled examples) and Testing (applying the function to new examples).",
+      "Feature Construction (creating features) and Classification (labeling data).",
+      "Supervised (using labels) and Unsupervised (using no labels).",
+      "Data Mining (finding patterns) and Anomaly Detection (finding deviations)."
+    ],
+    "correctAnswer": [
+      "Training (estimating a prediction function from labeled examples) and Testing (applying the function to new examples)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L17_Machine_Learning_for_Security.pdf",
+      "pageNumber": 1,
+      "topic": "Machine Learning for Security"
+    }
+  },
+  {
+    "id": 72,
+    "questionText": "In a binary classification problem, what is the definition of 'Precision'?",
+    "options": [
+      "The fraction of correct predictions among all examples *predicted* to be positive.",
+      "The fraction of correct predictions among all *real* positive examples.",
+      "The fraction of *all* predictions (positive and negative) that were correct.",
+      "The fraction of *all* predictions that were false."
+    ],
+    "correctAnswer": [
+      "The fraction of correct predictions among all examples *predicted* to be positive."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L17_Machine_Learning_for_Security.pdf",
+      "pageNumber": 3,
+      "topic": "Machine Learning for Security"
+    }
+  },
+  {
+    "id": 73,
+    "questionText": "How does a decision tree learning algorithm build a model?",
+    "options": [
+      "It repeatedly partitions the training data into smaller, \"purer\" subsets based on attribute values.",
+      "It finds the average (centroid) of all data points belonging to a class.",
+      "It models the statistical byte frequency of the examples.",
+      "It maps the data to a high-dimensional space and finds an optimal separating hyperplane."
+    ],
+    "correctAnswer": [
+      "It repeatedly partitions the training data into smaller, \"purer\" subsets based on attribute values."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L17_Machine_Learning_for_Security.pdf",
+      "pageNumber": 4,
+      "topic": "Machine Learning for Security"
+    }
+  },
+  {
+    "id": 74,
+    "questionText": "When building a decision tree, what does 'Information Gain' measure?",
+    "options": [
+      "How well an attribute (A) separates a set of samples (S) into \"purer\" subsets based on their class.",
+      "The total number of bits saved by using the decision tree.",
+      "The accuracy of the model on the test data.",
+      "The amount of new information learned from the training data."
+    ],
+    "correctAnswer": [
+      "How well an attribute (A) separates a set of samples (S) into \"purer\" subsets based on their class."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L17_Machine_Learning_for_Security.pdf",
+      "pageNumber": 5,
+      "topic": "Machine Learning for Security"
+    }
+  },
+  {
+    "id": 75,
+    "questionText": "What is the 'Feature Construction Problem' in machine learning for intrusion detection?",
+    "options": [
+      "The raw features (like 'flag') are not very useful, so new temporal and statistical features (like 'count of SO flags to the same host in 2 sec') must be created.",
+      "There are too many features, and the model is too slow.",
+      "The features are too complex for the machine learning algorithm to understand.",
+      "The raw data (like `tcpdump`) is not in the correct format."
+    ],
+    "correctAnswer": [
+      "The raw features (like 'flag') are not very useful, so new temporal and statistical features (like 'count of SO flags to the same host in 2 sec') must be created."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L17_Machine_Learning_for_Security.pdf",
+      "pageNumber": 8,
+      "topic": "Machine Learning for Security"
+    }
+  },
+  {
+    "id": 76,
+    "questionText": "According to the lecture, what is the primary challenge of performing Internet-wide security scanning with traditional tools?",
+    "options": [
+      "It is difficult and slow.",
+      "It is illegal.",
+      "It requires a supercomputer.",
+      "It always results in low-accuracy data."
+    ],
+    "correctAnswer": [
+      "It is difficult and slow."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L13_Internet_Scale_Threat_Analysis.pdf",
+      "pageNumber": 1,
+      "topic": "Internet-Scale Scanning"
+    }
+  },
+  {
+    "id": 77,
+    "questionText": "How does ZMap's performance compare to Nmap for Internet-wide scanning?",
+    "options": [
+      "ZMap is over 1300 times faster and finds more results.",
+      "Nmap is faster, but ZMap is more accurate.",
+      "They have identical performance.",
+      "ZMap is faster, but finds fewer results than Nmap."
+    ],
+    "correctAnswer": [
+      "ZMap is over 1300 times faster and finds more results."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L13_Internet_Scale_Threat_Analysis.pdf",
+      "pageNumber": 6,
+      "topic": "Internet-Scale Scanning"
+    }
+  },
+  {
+    "id": 78,
+    "questionText": "What is a key architectural difference between ZMap and existing network scanners like Nmap?",
+    "options": [
+      "ZMap bypasses the OS network stack and generates its own Ethernet frames, while Nmap uses the existing stack.",
+      "ZMap scans in numerical IP order, while Nmap scans randomly.",
+      "ZMap can only scan one port at a time, while Nmap can scan all ports.",
+      "ZMap is not open-source, while Nmap is."
+    ],
+    "correctAnswer": [
+      "ZMap bypasses the OS network stack and generates its own Ethernet frames, while Nmap uses the existing stack."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L13_Internet_Scale_Threat_Analysis.pdf",
+      "pageNumber": 2,
+      "topic": "Internet-Scale Scanning"
+    }
+  },
+  {
+    "id": 79,
+    "questionText": "How does ZMap scan the entire IPv4 address space in a random order without storing a list of all hosts to be scanned?",
+    "options": [
+      "It iterates over a multiplicative group of integers modulo a prime, which generates a random permutation of the address space.",
+      "It uses a very large in-memory bitmap to track which hosts have been scanned.",
+      "It asks a central server for the next batch of addresses to scan.",
+      "It pings all hosts first and then scans the ones that respond, in order."
+    ],
+    "correctAnswer": [
+      "It iterates over a multiplicative group of integers modulo a prime, which generates a random permutation of the address space."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L13_Internet_Scale_Threat_Analysis.pdf",
+      "pageNumber": 3,
+      "topic": "Internet-Scale Scanning"
+    }
+  },
+  {
+    "id": 80,
+    "questionText": "What is the 'Boot-Time Entropy Hole' problem that causes embedded systems to generate broken cryptographic keys?",
+    "options": [
+      "/dev/urandom may be predictable for a period after boot because the device hasn't gathered enough entropy (e.g., from keyboard/mouse/disk timings) yet.",
+      "The hardware random number generator is physically broken.",
+      "The RSA algorithm itself is flawed on embedded systems.",
+      "The device's clock is not set, causing all timestamps to be invalid."
+    ],
+    "correctAnswer": [
+      "/dev/urandom may be predictable for a period after boot because the device hasn't gathered enough entropy (e.g., from keyboard/mouse/disk timings) yet."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L13_Internet_Scale_Threat_Analysis.pdf",
+      "pageNumber": 8,
+      "topic": "Internet-Scale Scanning"
+    }
+  },
+  {
+    "id": 81,
+    "questionText": "Which cloud service model gives the consumer the ability to provision processing/storage and deploy arbitrary software, including their own operating systems?",
+    "options": [
+      "Infrastructure as a Service (IaaS)",
+      "Platform as a Service (PaaS)",
+      "Software as a Service (SaaS)",
+      "Community as a Service (CaaS)"
+    ],
+    "correctAnswer": [
+      "Infrastructure as a Service (IaaS)"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L19-Cloud_Computing_VM_Monitoring.pdf",
+      "pageNumber": 2,
+      "topic": "Cloud Security & VM Monitoring"
+    }
+  },
+  {
+    "id": 82,
+    "questionText": "Which of the following risks are specifically associated with the Infrastructure as a Service (IaaS) model?",
+    "options": [
+      "Virtual machine security and hypervisor security.",
+      "API related issues and provider-specific support.",
+      "Data security and data locality risks.",
+      "All of the above."
+    ],
+    "correctAnswer": [
+      "Virtual machine security and hypervisor security."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L19-Cloud_Computing_VM_Monitoring.pdf",
+      "pageNumber": 4,
+      "topic": "Cloud Security & VM Monitoring"
+    }
+  },
+  {
+    "id": 83,
+    "questionText": "Which of the following are listed as key security *challenges* of adopting cloud computing? (Select all that apply)",
+    "options": [
+      "Trusting the vendor's security model.",
+      "Loss of physical control over the infrastructure.",
+      "Customer inability to respond to audit findings directly.",
+      "Proprietary implementations that cannot be examined.",
+      "Cloud homogeneity making security auditing simpler."
+    ],
+    "correctAnswer": [
+      "Trusting the vendor's security model.",
+      "Loss of physical control over the infrastructure.",
+      "Customer inability to respond to audit findings directly.",
+      "Proprietary implementations that cannot be examined."
+    ],
+    "answerType": "checkbox",
+    "meta": {
+      "sourceFile": "L19-Cloud_Computing_VM_Monitoring.pdf",
+      "pageNumber": 5,
+      "topic": "Cloud Security & VM Monitoring"
+    }
+  },
+  {
+    "id": 84,
+    "questionText": "What is the primary security advantage of using a hypervisor-based approach for virtual machine (VM) monitoring?",
+    "options": [
+      "The security tool runs in a separate, isolated VM with higher privilege than the guest OS, allowing it to inspect the guest's memory without being compromised by kernel-level malware in the guest.",
+      "The security tool runs inside the guest kernel, giving it direct access to all processes and data at native speed.",
+      "The hypervisor can encrypt all guest memory, making it unreadable to attackers.",
+      "The hypervisor runs at the user-level, so it cannot be compromised by kernel-level attacks."
+    ],
+    "correctAnswer": [
+      "The security tool runs in a separate, isolated VM with higher privilege than the guest OS, allowing it to inspect the guest's memory without being compromised by kernel-level malware in the guest."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L19-Cloud_Computing_VM_Monitoring.pdf",
+      "pageNumber": 11,
+      "topic": "Cloud Security & VM Monitoring"
+    }
+  },
+  {
+    "id": 85,
+    "questionText": "What are the two primary sources of high performance overhead for out-of-VM (hypervisor-based) monitoring?",
+    "options": [
+      "Invocation cost (switching to the hypervisor) and Introspection cost (mapping memory pages).",
+      "Network latency and disk I/O.",
+      "Encryption and decryption of the VM's memory.",
+      "CPU emulation and running out of memory."
+    ],
+    "correctAnswer": [
+      "Invocation cost (switching to the hypervisor) and Introspection cost (mapping memory pages)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L19-Cloud_Computing_VM_Monitoring.pdf",
+      "pageNumber": 15,
+      "topic": "Cloud Security & VM Monitoring"
+    }
+  },
+  {
+    "id": 86,
+    "questionText": "What is a 'blockchain' at its most basic level?",
+    "options": [
+      "A linked list where each block contains a hash pointer to the previous block.",
+      "A centralized database controlled by a single entity (like Scrooge).",
+      "A peer-to-peer network for sharing files.",
+      "A data structure that uses digital signatures to link blocks."
+    ],
+    "correctAnswer": [
+      "A linked list where each block contains a hash pointer to the previous block."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L15_Basics_of_Blockchain_and_Bitcoin.pdf",
+      "pageNumber": 2,
+      "topic": "Blockchain & Bitcoin"
+    }
+  },
+  {
+    "id": 87,
+    "questionText": "In Bitcoin, what serves as a user's identity or 'address'?",
+    "options": [
+      "A public key (or more accurately, the hash of a public key).",
+      "A secret (private) key.",
+      "A username and password registered with a central authority.",
+      "A unique hardware ID from the user's computer."
+    ],
+    "correctAnswer": [
+      "A public key (or more accurately, the hash of a public key)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L15_Basics_of_Blockchain_and_Bitcoin.pdf",
+      "pageNumber": 4,
+      "topic": "Blockchain & Bitcoin"
+    }
+  },
+  {
+    "id": 88,
+    "questionText": "What is the 'double-spending attack' in a simple cryptocurrency like GoofyCoin?",
+    "options": [
+      "An owner (Alice) pays the *same coin* to two different recipients (Bob and Chuck) in two different transactions.",
+      "An owner (Alice) pays Bob twice the amount she intended.",
+      "An attacker (Chuck) steals Alice's coin and spends it.",
+      "A user (Goofy) creates two coins with the exact same uniqueCoinID."
+    ],
+    "correctAnswer": [
+      "An owner (Alice) pays the *same coin* to two different recipients (Bob and Chuck) in two different transactions."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L15_Basics_of_Blockchain_and_Bitcoin.pdf",
+      "pageNumber": 6,
+      "topic": "Blockchain & Bitcoin"
+    }
+  },
+  {
+    "id": 89,
+    "questionText": "What is the main 'Centralization Problem' with ScroogeCoin?",
+    "options": [
+      "Scrooge, the central entity, has too much power and can deny service by refusing to publish (endorse) transactions for certain users.",
+      "Scrooge can be easily DDoSed, bringing down the entire network.",
+      "Scrooge can forge other users' signatures and steal their coins.",
+      "Scrooge cannot keep up with the volume of transactions, making the network too slow."
+    ],
+    "correctAnswer": [
+      "Scrooge, the central entity, has too much power and can deny service by refusing to publish (endorse) transactions for certain users."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L15_Basics_of_Blockchain_and_Bitcoin.pdf",
+      "pageNumber": 9,
+      "topic": "Blockchain & Bitcoin"
+    }
+  },
+  {
+    "id": 90,
+    "questionText": "In Bitcoin's decentralized consensus, what is the purpose of 'Proof-of-Work'?",
+    "options": [
+      "It approximates selecting a random node to propose the next block, with the selection probability being proportional to a node's computing power.",
+      "It proves that a transaction is valid by checking the digital signature.",
+      "It proves that a user owns the coins they are trying to spend.",
+      "It is a puzzle that encrypts the transaction data, making the blockchain secure."
+    ],
+    "correctAnswer": [
+      "It approximates selecting a random node to propose the next block, with the selection probability being proportional to a node's computing power."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L15_Basics_of_Blockchain_and_Bitcoin.pdf",
+      "pageNumber": 15,
+      "topic": "Blockchain & Bitcoin"
+    }
+  },
+  {
+    "id": 91,
+    "questionText": "Which type of encryption allows computations (like addition or multiplication) to be performed directly on encrypted data, such that the result, when decrypted, matches the result of performing the same computation on the plaintext?",
+    "options": [
+      "Homomorphic",
+      "Property Preserving",
+      "Searchable",
+      "Functional"
+    ],
+    "correctAnswer": [
+      "Homomorphic"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L20_Property_Preserving_Encryption.pdf",
+      "pageNumber": 2,
+      "topic": "Property Preserving Encryption"
+    }
+  },
+  {
+    "id": 92,
+    "questionText": "According to the lecture, why is Property Preserving Encryption (PPE) so popular for cloud databases?",
+    "options": [
+      "It requires no changes to the application or database server and still supports most common SQL queries.",
+      "It is the most secure form of encryption available, leaking no information.",
+      "It is faster than standard AES encryption.",
+      "It is the only type of encryption supported by Microsoft SQL Server."
+    ],
+    "correctAnswer": [
+      "It requires no changes to the application or database server and still supports most common SQL queries."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L20_Property_Preserving_Encryption.pdf",
+      "pageNumber": 3,
+      "topic": "Property Preserving Encryption"
+    }
+  },
+  {
+    "id": 93,
+    "questionText": "Besides the size of the data, what two properties are preserved and/or leaked by *equality-preserving* encryption?",
+    "options": [
+      "Equality and Frequency",
+      "Order and Frequency",
+      "Equality and Order",
+      "Only Equality"
+    ],
+    "correctAnswer": [
+      "Equality and Frequency"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L20_Property_Preserving_Encryption.pdf",
+      "pageNumber": 4,
+      "topic": "Property Preserving Encryption"
+    }
+  },
+  {
+    "id": 94,
+    "questionText": "Besides the size of the data, what two properties are leaked by *order-preserving* encryption?",
+    "options": [
+      "Order and Frequency",
+      "Equality and Frequency",
+      "Equality and Order",
+      "Only Order"
+    ],
+    "correctAnswer": [
+      "Order and Frequency"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L20_Property_Preserving_Encryption.pdf",
+      "pageNumber": 4,
+      "topic": "Property Preserving Encryption"
+    }
+  },
+  {
+    "id": 95,
+    "questionText": "What is the goal of Oblivious RAM (ORAM)?",
+    "options": [
+      "To hide the user's data *access patterns* from an untrusted storage provider (like the cloud).",
+      "To encrypt data using the order-preserving property.",
+      "To allow SQL queries on encrypted data.",
+      "To make the RAM on the server \"tamper-proof\"."
+    ],
+    "correctAnswer": [
+      "To hide the user's data *access patterns* from an untrusted storage provider (like the cloud)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L20_Property_Preserving_Encryption.pdf",
+      "pageNumber": 8,
+      "topic": "Property Preserving Encryption"
+    }
+  },
+  {
+    "id": 96,
+    "questionText": "In a DNS Blacklist (DNSBL), what does the 'Gray' level signify?",
+    "options": [
+      "The IP is not directly involved in spamming but is associated with spam-like behaviors.",
+      "The IP has no trust and is a known spammer.",
+      "The IP has complete trust.",
+      "The IP sends both spam and non-spam email."
+    ],
+    "correctAnswer": [
+      "The IP is not directly involved in spamming but is associated with spam-like behaviors."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L14-Domain_and_Network_Reputation.pdf",
+      "pageNumber": 1,
+      "topic": "DNS Reputation"
+    }
+  },
+  {
+    "id": 97,
+    "questionText": "What is the function of the Notos system?",
+    "options": [
+      "It dynamically assigns reputation scores to domain names based on network and zone features (e.g., resource provisioning, usage).",
+      "It is a static blacklist of known malicious domains.",
+      "It scans the entire internet for open DNS resolvers.",
+      "It analyzes mobile malware applications to find C&C domains."
+    ],
+    "correctAnswer": [
+      "It dynamically assigns reputation scores to domain names based on network and zone features (e.g., resource provisioning, usage)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L14-Domain_and_Network_Reputation.pdf",
+      "pageNumber": 2,
+      "topic": "DNS Reputation"
+    }
+  },
+  {
+    "id": 98,
+    "questionText": "What is the primary difference in monitoring between the Kopis and Notos reputation systems?",
+    "options": [
+      "Kopis monitors at the *authoritative/TLD* DNS servers (global view), while Notos monitors at *recursive* DNS servers (e.g., an ISP's local view).",
+      "Notos monitors at the *authoritative/TLD* DNS servers, while Kopis monitors at *recursive* DNS servers.",
+      "Kopis only analyzes domain names, while Notos also analyzes IP addresses.",
+      "Notos is a static blacklist, while Kopis is a dynamic reputation system."
+    ],
+    "correctAnswer": [
+      "Kopis monitors at the *authoritative/TLD* DNS servers (global view), while Notos monitors at *recursive* DNS servers (e.g., an ISP's local view)."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L14-Domain_and_Network_Reputation.pdf",
+      "pageNumber": 3,
+      "topic": "DNS Reputation"
+    }
+  },
+  {
+    "id": 99,
+    "questionText": "The Notos system groups its features into three categories. Which category would include 'the average length of domain names' and 'the occurrence frequency of different characters'?",
+    "options": [
+      "Zone-based features",
+      "Network-based features",
+      "Evidence-based features",
+      "Temporal-based features"
+    ],
+    "correctAnswer": [
+      "Zone-based features"
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L14-Domain_and_Network_Reputation.pdf",
+      "pageNumber": 5,
+      "topic": "DNS Reputation"
+    }
+  },
+  {
+    "id": 100,
+    "questionText": "What is the 'Malware Interrogation' technique used by the RZA takedown system?",
+    "options": [
+      "It 'games' the malware by faking infrastructure failures (e.g., sending NXDomain or TCP RST packets) to force the malware to reveal its backup C&C behaviors.",
+      "It reverse-engineers the malware's binary code to find hardcoded domains and IPs.",
+      "It runs the malware in a sandbox and monitors its network traffic for 24 hours.",
+      "It interviews the malware author to learn the C&C infrastructure."
+    ],
+    "correctAnswer": [
+      "It 'games' the malware by faking infrastructure failures (e.g., sending NXDomain or TCP RST packets) to force the malware to reveal its backup C&C behaviors."
+    ],
+    "answerType": "radio",
+    "meta": {
+      "sourceFile": "L14-Domain_and_Network_Reputation.pdf",
+      "pageNumber": 10,
+      "topic": "DNS Reputation"
     }
   }
 ]
