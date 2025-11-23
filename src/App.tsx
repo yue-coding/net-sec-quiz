@@ -59,15 +59,49 @@ export default function App() {
     }
   }, [questions])
 
+  // Helper: shuffle options for a single question with a seeded RNG
+  function shuffleQuestionOptions(q: Question, rng: () => number): Question {
+    const shuffledOptions = [...q.options];
+
+    for (let i = shuffledOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+    }
+
+    // Re-map correctAnswer so it still refers to the correct option texts.
+    // Since correctness is based on label text, we just keep the same strings.
+    const shuffledQuestion: Question = {
+      ...q,
+      options: shuffledOptions,
+      // Ensure we keep only those correct answers that are still present in options
+      correctAnswer: q.correctAnswer.filter((ans) => shuffledOptions.includes(ans)),
+    };
+
+    return shuffledQuestion;
+  }
+
   const session = useMemo(() => {
-    const targetCount = isTopicScoped ? 5 : count
-    const pool = selectedTopic === 'all'
-      ? shuffled
-      : (hasTopicMeta ? shuffled.filter(q => q.meta?.topic === selectedTopic) : shuffled)
-    if (pool.length === 0) return []
-    const n = Math.max(1, Math.min(targetCount, pool.length))
-    return pool.slice(0, n)
-  }, [shuffled, count, selectedTopic, hasTopicMeta, isTopicScoped])
+    const targetCount = isTopicScoped ? 5 : count;
+
+    // Use the same seed to derive a deterministic RNG for option shuffling
+    const rng = mulberry32(seed);
+
+    const pool =
+      selectedTopic === 'all'
+        ? shuffled
+        : hasTopicMeta
+        ? shuffled.filter((q) => q.meta?.topic === selectedTopic)
+        : shuffled;
+
+    if (pool.length === 0) return [];
+
+    const n = Math.max(1, Math.min(targetCount, pool.length));
+
+    // Slice questions, then shuffle options within each question
+    const selectedQuestions = pool.slice(0, n).map((q) => shuffleQuestionOptions(q, rng));
+
+    return selectedQuestions;
+  }, [shuffled, count, selectedTopic, hasTopicMeta, isTopicScoped, seed]);
 
   return (
   <div className="min-h-full">
